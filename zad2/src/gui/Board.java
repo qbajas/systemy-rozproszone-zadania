@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -15,11 +17,14 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import server.INoteBoard;
+import client.FileChooser;
 
 import client.NoteBoardClient;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +82,7 @@ public class Board implements Serializable{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 492, 537);
+		frame.setBounds(100, 100, 492, 581);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -143,12 +148,12 @@ public class Board implements Serializable{
 		cells.add(9, cell_7);
 		
 		textField = new JTextField();
-		textField.setBounds(122, 354, 137, 20);
+		textField.setBounds(77, 325, 137, 20);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		final JLabel lblYourNick = new JLabel("Your nick:");
-		lblYourNick.setBounds(53, 357, 86, 14);
+		lblYourNick.setBounds(10, 325, 86, 14);
 		frame.getContentPane().add(lblYourNick);
 		
 		final Board me = this;
@@ -159,16 +164,16 @@ public class Board implements Serializable{
 				NoteBoardClient.start(username,me,true);
 			}
 		});
-		btnStartTheGame.setBounds(45, 431, 362, 23);
+		btnStartTheGame.setBounds(45, 475, 362, 23);
 		frame.getContentPane().add(btnStartTheGame);
 		
 		JLabel lblYourOpponentIs = new JLabel("Your opponent is:");
-		lblYourOpponentIs.setBounds(45, 394, 169, 14);
+		lblYourOpponentIs.setBounds(224, 325, 137, 14);
 		frame.getContentPane().add(lblYourOpponentIs);
 		
 		opponentName = new JLabel("");
 		opponentName.setFont(new Font("Tahoma", Font.BOLD, 11));
-		opponentName.setBounds(147, 394, 190, 14);
+		opponentName.setBounds(341, 325, 125, 14);
 		frame.getContentPane().add(opponentName);
 		
 		JButton btnStartTheGame_1 = new JButton("Start the game with computer");
@@ -179,8 +184,50 @@ public class Board implements Serializable{
 				opponentName.setText("Computer");
 			}
 		});
-		btnStartTheGame_1.setBounds(45, 465, 362, 23);
+		btnStartTheGame_1.setBounds(45, 509, 362, 23);
 		frame.getContentPane().add(btnStartTheGame_1);
+		
+		JPanel opponentAvatarPanel = new JPanel();
+		opponentAvatarPanel.setBackground(Color.WHITE);
+		opponentAvatarPanel.setBounds(301, 360, 106, 90);
+		frame.getContentPane().add(opponentAvatarPanel);
+		
+		JLabel opponentAvatar = new JLabel("");
+		opponentAvatar.setBackground(Color.WHITE);
+		opponentAvatarPanel.add(opponentAvatar);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
+		panel_1.setBounds(10, 356, 106, 90);
+		frame.getContentPane().add(panel_1);
+		
+		final JLabel myAvatar = new JLabel("");
+		panel_1.add(myAvatar);
+		myAvatar.setBackground(Color.WHITE);
+		
+		JButton btnLoadAvatar = new JButton("<html>Load<br> avatar</html>");
+		btnLoadAvatar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FileChooser fc = new FileChooser();
+				File f = fc.LoadFile();
+
+				try {
+					BufferedImage loadedPicture = ImageIO.read(f);
+					myAvatar.setIcon(new ImageIcon(loadedPicture));
+					System.out.println("Image " + f.getName() + " loaded.");
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Image not recognized");
+				}
+			}
+		});
+		btnLoadAvatar.setBounds(125, 389, 65, 61);
+		frame.getContentPane().add(btnLoadAvatar);
+		
+
+		
+
+		
+
 	}
 
 	public boolean makeMove(String text) {		
