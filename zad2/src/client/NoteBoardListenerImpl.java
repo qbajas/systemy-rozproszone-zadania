@@ -4,6 +4,9 @@ import gui.Board;
 
 import java.rmi.RemoteException;
 
+import javax.swing.Icon;
+import javax.swing.JLabel;
+
 public class NoteBoardListenerImpl implements INoteBoardListener {
 
 	private Board board;
@@ -47,6 +50,17 @@ public class NoteBoardListenerImpl implements INoteBoardListener {
 	@Override
 	public void notifyNewPlayer(String pseudo) {
 		board.setOpponent(pseudo);
+	}
+
+	@Override
+	public void setOpponentAvatar(INoteBoardListener firstListener)
+			throws RemoteException {
+		board.setOpponentAvatar(firstListener.getAvatar());		
+	}
+
+	@Override
+	public Icon getAvatar() throws RemoteException {
+		return board.getMyAvatar().getIcon();
 	}
 
 }

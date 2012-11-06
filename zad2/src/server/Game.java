@@ -54,6 +54,8 @@ public class Game {
 			if(secondListener!=null){
 				firstListener.notifyNewPlayer(secondUser.getPseudo());			
 				secondListener.notifyNewPlayer(firstUser.getPseudo());
+				secondListener.setOpponentAvatar(firstListener);
+				firstListener.setOpponentAvatar(secondListener);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

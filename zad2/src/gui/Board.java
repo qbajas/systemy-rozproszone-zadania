@@ -1,8 +1,10 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.Label;
 import java.rmi.Remote;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -40,10 +42,22 @@ public class Board implements Remote, Serializable {
 	private JTextField textField;
 	private JLabel opponentName;
 	
+	private JLabel myAvatar;
+	private JLabel opponentAvatar;
+	
+
+
 	private INoteBoard nb;
 	private String username;
 	
 	private List<Cell> cells;
+
+	
+	
+	public void setOpponentAvatar(Icon opponentAvatar) {
+		this.opponentAvatar.setText("No avatar");
+		this.opponentAvatar.setIcon(opponentAvatar);
+	}
 
 	public String getUsername() {
 		return username;
@@ -55,6 +69,10 @@ public class Board implements Remote, Serializable {
 
 	public void setNb(INoteBoard nb) {
 		this.nb = nb;
+	}
+	
+	public JLabel getMyAvatar() {
+		return myAvatar;
 	}
 
 	/**
@@ -196,7 +214,7 @@ public class Board implements Remote, Serializable {
 		opponentAvatarPanel.setBounds(301, 360, 106, 90);
 		frame.getContentPane().add(opponentAvatarPanel);
 		
-		JLabel opponentAvatar = new JLabel("");
+		opponentAvatar = new JLabel("");
 		opponentAvatar.setBackground(Color.WHITE);
 		opponentAvatarPanel.add(opponentAvatar);
 		
@@ -205,7 +223,7 @@ public class Board implements Remote, Serializable {
 		panel_1.setBounds(10, 356, 106, 90);
 		frame.getContentPane().add(panel_1);
 		
-		final JLabel myAvatar = new JLabel("");
+		myAvatar = new JLabel("");
 		panel_1.add(myAvatar);
 		myAvatar.setBackground(Color.WHITE);
 		
