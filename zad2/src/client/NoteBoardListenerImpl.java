@@ -7,19 +7,29 @@ import java.rmi.RemoteException;
 public class NoteBoardListenerImpl implements INoteBoardListener {
 
 	private Board board;
-	private boolean withOpponent;
+	private boolean withOpponent = true;
 
-	public NoteBoardListenerImpl(Board board, boolean withOpponent) {
+	public NoteBoardListenerImpl(Board b) {
 		super();
-		this.board = board;
+		this.board = b;
+	}
+
+	public boolean isWithOpponent() {
+		return withOpponent;
+	}
+
+	public void setWithOpponent(boolean withOpponent) {
 		this.withOpponent = withOpponent;
 	}
 
 	@Override
 	public void onNewText(String text) throws RemoteException {
-		board.makeMove(text);
-		if (!withOpponent) {
+		if (withOpponent) {
+			System.out.println("Making opponent move");
+			board.makeMove(text);
+		} else {
 
+			System.out.println("Making computer move");
 			(new Thread() {
 				public void run() {
 					try {
@@ -31,7 +41,6 @@ public class NoteBoardListenerImpl implements INoteBoardListener {
 					board.makeComputerMove();
 				}
 			}).start();
-
 		}
 	}
 

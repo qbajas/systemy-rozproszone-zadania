@@ -11,5 +11,6 @@ public interface INoteBoardListener extends Remote  {
 
 	public void notifyNewPlayer(String pseudo) throws RemoteException;
 	
+	public void setWithOpponent(boolean withOpponent) throws RemoteException;
 	
 }

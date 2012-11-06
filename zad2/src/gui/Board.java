@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
-
+import java.rmi.Remote;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,8 +30,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.Font;
 
-public class Board implements Serializable{
+public class Board implements Remote, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JTextField textField;
 	private JLabel opponentName;

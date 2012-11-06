@@ -1,5 +1,7 @@
 package server;
 
+import gui.Board;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -8,7 +10,7 @@ import client.User;
 
 public interface INoteBoard extends Remote {
 
-	public void appendText(String newNote) throws RemoteException;
+	public void appendText(String newNote, User user) throws RemoteException;
 	
-	public boolean register(User user, INoteBoardListener nbl) throws RemoteException;
+	public boolean register(User user, INoteBoardListener nbl, boolean withOpponent) throws RemoteException;
 }

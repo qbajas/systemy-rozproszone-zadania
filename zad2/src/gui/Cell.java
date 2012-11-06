@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.JPanel;
 
+import client.User;
+
 import server.INoteBoard;
 
 import java.awt.Color;
@@ -12,6 +14,10 @@ import java.rmi.RemoteException;
 
 public class Cell extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Board board;
 	private int number;
 	private boolean empty=true;
@@ -33,7 +39,7 @@ public class Cell extends JPanel{
 					empty=false;
 					INoteBoard nb = board.getNb();
 					try {
-						nb.appendText(Integer.toString(number));
+						nb.appendText(Integer.toString(number),new User(board.getUsername()) );
 					} catch (RemoteException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
