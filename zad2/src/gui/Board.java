@@ -55,7 +55,6 @@ public class Board implements Remote, Serializable {
 	
 	
 	public void setOpponentAvatar(Icon opponentAvatar) {
-		this.opponentAvatar.setText("No avatar");
 		this.opponentAvatar.setIcon(opponentAvatar);
 	}
 
