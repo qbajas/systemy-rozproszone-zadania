@@ -1,6 +1,2 @@
-C:\Users\Qba\Documents\STUDIA\rozprochy\lab2\src\server>java -cp C:\Users\Qba\Do
-cuments\STUDIA\rozprochy\lab2\src\ -Djava.rmi.server.codebase=file:/C:/Users/Qba
-/Documents/STUDIA/rozprochy/lab2/src/ server.NoteBoardServer
 
-
-C:\Users\Qba\Documents\STUDIA\rozprochy\lab2\src>java -cp . -Djava.rmi.server.codebase=file:/C:/Users/Qba/Documents/STUDIA/rozprochy/lab2/src/ server.NoteBoardServer
+C:\Users\Qba\Documents\STUDIA\rozprochy\zadania\zad2>java -cp . -Djava.rmi.server.codebase=file:/C:/Users/Qba/Documents/STUDIA/rozprochy/zadania/zad2/src/ server.NoteBoardServer
