@@ -50,6 +50,8 @@ public class Board implements Remote, Serializable {
 	private INoteBoard nb;
 	private String username;
 	
+	private String address;
+	
 	private List<Cell> cells;
 
 	
@@ -77,11 +79,11 @@ public class Board implements Remote, Serializable {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Board window = new Board();
+					Board window = new Board(args[0]);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -92,9 +94,11 @@ public class Board implements Remote, Serializable {
 
 	/**
 	 * Create the application.
+	 * @param address 
 	 */
-	public Board() {
+	public Board(String address) {
 		cells = new ArrayList<Cell>(10);
+		this.address = address;
 		initialize();
 	}
 
@@ -182,7 +186,7 @@ public class Board implements Remote, Serializable {
 		btnStartTheGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				username = textField.getText();
-				NoteBoardClient.start(username,me,true);
+				NoteBoardClient.start(username,me,true,address);
 			}
 		});
 		btnStartTheGame.setBounds(45, 475, 362, 23);
@@ -201,7 +205,7 @@ public class Board implements Remote, Serializable {
 		btnStartTheGame_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				username = textField.getText();
-				NoteBoardClient.start(username,me,false);
+				NoteBoardClient.start(username,me,false,address);
 				opponentName.setText("Computer");
 			}
 		});

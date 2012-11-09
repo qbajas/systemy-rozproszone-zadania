@@ -1,2 +1,5 @@
+server:
+C:\Users\Qba\Documents\STUDIA\rozprochy\zadania\zad2\src>java -cp . -Djava.rmi.server.codebase=file:/C:/Users/Qba/Documents/STUDIA/rozprochy/zadania/zad2/src/ server.NoteBoardServer
 
-C:\Users\Qba\Documents\STUDIA\rozprochy\zadania\zad2>java -cp . -Djava.rmi.server.codebase=file:/C:/Users/Qba/Documents/STUDIA/rozprochy/zadania/zad2/src/ server.NoteBoardServer
+client:
+C:\Users\Qba\Documents\STUDIA\rozprochy\zadania\zad2\src>java gui.Board 127.0.0.1
