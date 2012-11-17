@@ -59,7 +59,7 @@ public class Command {
 		System.out.println("  subscribe CATEGORY_NAME");
 		System.out
 				.println("  publish CATEGORY_NAME AUCTION_NAME STARTING_PRICE DESCRIPTION SECONDS_TO_END");
-		System.out.println("  bid AUCTION_NAME PRICE");
+		System.out.println("  bid CATEGORY_NAME AUCTION_NAME PRICE");
 	}
 
 }

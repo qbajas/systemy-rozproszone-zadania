@@ -3,7 +3,9 @@ package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.jms.JMSException;
 import javax.jms.Topic;
@@ -23,6 +25,8 @@ public class ClientImpl implements Client {
 	
 	TopicConnection topicConnection;
 	Context context;
+	
+	Set<Auction> auctions;
 
 	
 	public static void main(String[] args) throws NamingException,
@@ -37,6 +41,7 @@ public class ClientImpl implements Client {
 	
 	public ClientImpl(String ip) throws NamingException, JMSException {
 		initialize(ip);
+		auctions = new HashSet<Auction>();
 	}
 
 	private void initialize(String ip) throws NamingException, JMSException {
@@ -64,6 +69,7 @@ public class ClientImpl implements Client {
 	public void subscribe(String topicName) {
 		try {
 			// session & Topic
+//			 TODO make singleton
 			TopicSession topicSession = topicConnection.createTopicSession(
 					false, Session.AUTO_ACKNOWLEDGE);
 			Topic topic = (Topic) context.lookup(topicName);
@@ -86,6 +92,7 @@ public class ClientImpl implements Client {
 		TopicPublisher sender = null;
 		try {
 			// session & Topic
+//			 TODO make singleton
 			TopicSession topicSession = topicConnection.createTopicSession(
 					false, Session.AUTO_ACKNOWLEDGE);
 			Topic topic = (Topic) context.lookup(topicName);
@@ -95,6 +102,9 @@ public class ClientImpl implements Client {
 			sender = topicSession.createPublisher(topic);
 			topicConnection.start();
 			System.out.println("You published an auction in " + topicName + " category.");
+			
+//			TODO 
+//			if auctions.add()			
 			
 			TextMessage message = topicSession.createTextMessage("There is a new auction in " + topicName + " category.");
 			sender.send(message);
