@@ -81,7 +81,7 @@ public class ClientImpl implements Client, Publisher {
 			Topic topic = (Topic) context.lookup(topicName);
 
 			// CONSUMER
-			receiver = topicSession.createSubscriber(topic);
+			receiver = topicSession.createSubscriber(topic, "bid IS NULL",false);
 			receiver.setMessageListener(new TopicMessageListenerImpl());
 			System.out.println("Subscribed to topic " + topicName);
 		} catch (Exception e) {
@@ -101,7 +101,7 @@ public class ClientImpl implements Client, Publisher {
 			// PRODUCER
 			sender = topicSession.createPublisher(topic);
 			// CONSUMER
-			TopicSubscriber receiver = topicSession.createSubscriber(topic);
+			TopicSubscriber receiver = topicSession.createSubscriber(topic, "bid = true",false);			
 			receiver.setMessageListener(new BidMessageListenerImpl(this));
 
 			Auction a = new Auction(topicName, auctionName, startingPrice,
@@ -135,6 +135,8 @@ public class ClientImpl implements Client, Publisher {
 			Auction a = new Auction(categoryName, auctionName, price);
 			System.out.println("You made a bid in " + auctionName + " auction.");
 			ObjectMessage message = topicSession.createObjectMessage(a);
+			message.setBooleanProperty("bid", true);
+			sender.setPriority(6);
 			sender.send(message);
 //			TextMessage txtMessage = topicSession.createTextMessage(
 //					"New bid in auction: " + auctionName + " in category " + categoryName);
@@ -157,6 +159,7 @@ public class ClientImpl implements Client, Publisher {
 			TopicPublisher sender = topicSession.createPublisher(topic);
 			
 			TextMessage message = topicSession.createTextMessage("New highest bid in auction !:\n" + auction.printDescription());
+			sender.setPriority(5);
 			sender.send(message);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

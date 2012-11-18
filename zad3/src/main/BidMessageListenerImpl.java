@@ -20,8 +20,6 @@ public class BidMessageListenerImpl implements MessageListener {
 
 	@Override
 	public void onMessage(Message arg0) {
-		if (arg0 instanceof ObjectMessage) {
-
 			Auction auction = null;
 			ObjectMessage message = (ObjectMessage) arg0;
 			try {
@@ -44,8 +42,6 @@ public class BidMessageListenerImpl implements MessageListener {
 					}
 				}
 			}
-
-		}
 	}
 
 }

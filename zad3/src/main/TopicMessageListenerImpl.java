@@ -9,9 +9,7 @@ public class TopicMessageListenerImpl implements MessageListener {
 
 	@Override
 	public void onMessage(Message arg0) {
-		if (arg0 instanceof TextMessage) {
-			System.out.println(arg0);
-		}
+		System.out.println(arg0);
 	}
 
 }
