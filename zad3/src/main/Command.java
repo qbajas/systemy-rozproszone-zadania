@@ -31,21 +31,21 @@ public class Command {
 
 	public void interpret(String command) {
 		String[] subcommands = command.split(" ");
-		switch (subcommands[0]) {
-		case "subscribe":
+//		ifs instead of switch to comply with java 6 :(
+		if(subcommands[0].equals("subscribe")){
 			client.subscribe(subcommands[1]);
-			break;
-		case "publish":
-			client.publish(subcommands[1],subcommands[2],subcommands[3],subcommands[4],subcommands[5]);
-			break;
-		case "bid":
-			client.bid(subcommands[1],subcommands[2],subcommands[3]);
-			break;
-		default:
-			System.out.println("Wrong command !");
-			printCommands();
-
+			return;
 		}
+		if(subcommands[0].equals("publish")){
+			client.publish(subcommands[1],subcommands[2],subcommands[3],subcommands[4],subcommands[5]);
+			return;
+		}
+		if(subcommands[0].equals("bid")){
+			client.bid(subcommands[1],subcommands[2],subcommands[3]);
+			return;
+		}
+		System.out.println("Wrong command !");
+		printCommands();
 	}
 
 	public void printTopics() {
