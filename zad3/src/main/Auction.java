@@ -10,7 +10,7 @@ public class Auction implements Serializable {
 	private String name;
 	private int price;
 	private String description;
-	private Date endTime;
+	private int endTime;
 	
 		
 	public Auction(String category, String name, String price, String description,
@@ -21,7 +21,7 @@ public class Auction implements Serializable {
 		this.price = Integer.parseInt(price);
 		this.description = description;
 //		TODO date
-//		this.endTime = endTime;
+		this.endTime = Integer.parseInt(endTime);
 	}
 	
 	public Auction(String category, String name, String price) {
@@ -38,7 +38,7 @@ public class Auction implements Serializable {
 		desc += " Name: " + name+ "\n";
 		desc += " Current price: " + price+ "\n";
 		desc += " Description: " + description+ "\n";
-		desc += " End time: " + endTime+ "\n";
+		desc += " End time: " + endTime+ " sec\n";
 		return desc;
 	}
 
