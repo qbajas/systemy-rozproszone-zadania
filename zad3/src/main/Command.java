@@ -1,5 +1,7 @@
 package main;
 
+import interfaces.Client;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +39,7 @@ public class Command {
 			client.publish(subcommands[1],subcommands[2],subcommands[3],subcommands[4],subcommands[5]);
 			break;
 		case "bid":
-			// TODO
+			client.bid(subcommands[1],subcommands[2],subcommands[3]);
 			break;
 		default:
 			System.out.println("Wrong command !");
@@ -56,8 +58,7 @@ public class Command {
 	public void printCommands() {
 		System.out.println("Available commands: ");
 		System.out.println("  subscribe CATEGORY_NAME");
-		System.out
-				.println("  publish CATEGORY_NAME AUCTION_NAME STARTING_PRICE DESCRIPTION SECONDS_TO_END");
+		System.out.println("  publish CATEGORY_NAME AUCTION_NAME STARTING_PRICE DESCRIPTION SECONDS_TO_END");
 		System.out.println("  bid CATEGORY_NAME AUCTION_NAME PRICE");
 	}
 

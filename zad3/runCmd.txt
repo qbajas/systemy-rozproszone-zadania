@@ -1,1 +1,8 @@
 start java -jar client.jar localhost
+
+
+sample commands:
+
+subscribe toys
+publish toys toy1 100 desc 100
+bid toys toy1 200

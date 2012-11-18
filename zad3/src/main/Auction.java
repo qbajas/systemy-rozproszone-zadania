@@ -1,9 +1,10 @@
 package main;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class Auction {
+public class Auction implements Serializable {
 	
 	private String category;
 	private String name;
@@ -23,6 +24,13 @@ public class Auction {
 //		this.endTime = endTime;
 	}
 	
+	public Auction(String category, String name, String price) {
+		super();
+		this.category = category;
+		this.name = name;		
+		this.price = Integer.parseInt(price);
+	}
+	
 	
 	public String printDescription(){
 		String desc="";
@@ -33,15 +41,17 @@ public class Auction {
 		desc += " End time: " + endTime+ "\n";
 		return desc;
 	}
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -51,6 +61,11 @@ public class Auction {
 		if (getClass() != obj.getClass())
 			return false;
 		Auction other = (Auction) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -58,6 +73,8 @@ public class Auction {
 			return false;
 		return true;
 	}
+	
+
 
 	
 	

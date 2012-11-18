@@ -1,11 +1,15 @@
 package main;
 
+import interfaces.Client;
+import interfaces.Publisher;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
 import javax.jms.JMSException;
+import javax.jms.ObjectMessage;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
 import javax.jms.TopicConnectionFactory;
@@ -18,7 +22,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class ClientImpl implements Client {
+public class ClientImpl implements Client, Publisher {
 
 	TopicConnection topicConnection;
 	Context context;
@@ -58,6 +62,8 @@ public class ClientImpl implements Client {
 		// session
 		topicSession = topicConnection.createTopicSession(false,
 				Session.AUTO_ACKNOWLEDGE);
+		
+		topicConnection.start();
 	}
 
 	@Override
@@ -66,21 +72,21 @@ public class ClientImpl implements Client {
 	}
 
 	@Override
-	public void subscribe(String topicName) {
+	public TopicSubscriber subscribe(String topicName) {
+		TopicSubscriber receiver = null;
 		try {
 			// Topic
 			Topic topic = (Topic) context.lookup(topicName);
 			System.out.println("Topic OK");
 
 			// CONSUMER
-			TopicSubscriber receiver = topicSession.createSubscriber(topic);
-			receiver.setMessageListener(new MessageListenerImpl());
-			topicConnection.start();
+			receiver = topicSession.createSubscriber(topic);
+			receiver.setMessageListener(new TopicMessageListenerImpl());
 			System.out.println("Subscribed to topic " + topicName);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
+		return receiver;
 	}
 
 	@Override
@@ -94,7 +100,9 @@ public class ClientImpl implements Client {
 
 			// PRODUCER
 			sender = topicSession.createPublisher(topic);
-			topicConnection.start();
+			// CONSUMER
+			TopicSubscriber receiver = topicSession.createSubscriber(topic);
+			receiver.setMessageListener(new BidMessageListenerImpl(this));
 
 			Auction a = new Auction(topicName, auctionName, startingPrice,
 					description, secondsToEnd);
@@ -112,35 +120,44 @@ public class ClientImpl implements Client {
 		return sender;
 	}
 
-	// private void rest() throws JMSException, NamingException, IOException {
-	// // session & Topic
-	// TopicSession topicSession = topicConnection.createTopicSession(false,
-	// Session.AUTO_ACKNOWLEDGE);
-	// Topic topic = (Topic) context.lookup("topic1");
-	// System.out.println("Topic OK");
-	//
-	// // PRODUCER
-	// TopicPublisher sender = topicSession.createPublisher(topic);
-	// topicConnection.start();
-	// System.out.println("Connection started");
-	//
-	// System.out.println("CONSUMER");
-	//
-	// // CONSUMER
-	// TopicSubscriber receiver = topicSession.createSubscriber(topic);
-	// receiver.setMessageListener(new MessageListenerImpl());
-	// topicConnection.start();
-	// System.out.println("Connection started, listener set.");
-	//
-	// BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	//
-	// while (true) {
-	// System.out.println("Type message: ");
-	// String msg = br.readLine();
-	// TextMessage message = topicSession.createTextMessage(msg);
-	// System.out.println("Message sent");
-	// sender.send(message);
-	// }
-	// }
+	
+	
+	@Override
+	public TopicPublisher bid(String categoryName, String auctionName, String price) {
+		TopicPublisher sender = null;
+		try {
+			// Topic
+			Topic topic = (Topic) context.lookup(categoryName);
+			System.out.println("Topic OK");
+
+			// PRODUCER
+			sender = topicSession.createPublisher(topic);
+
+			Auction a = new Auction(categoryName, auctionName, price);
+			System.out.println("You made a bid in " + auctionName + " auction.");
+			ObjectMessage message = topicSession.createObjectMessage(a);
+			sender.send(message);
+//			TextMessage txtMessage = topicSession.createTextMessage(
+//					"New bid in auction: " + auctionName + " in category " + categoryName);
+//			sender.send(txtMessage);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return sender;
+		
+	}
+
+	@Override
+	public void newHighestBid(Auction auction) {
+		// TODO send txt msg		
+	}
+
+	@Override
+	public Set<Auction> getAuctions() {
+		return auctions;
+	}
+
+
 
 }
