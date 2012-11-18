@@ -2,6 +2,7 @@ package main;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Auction implements Serializable {
@@ -10,7 +11,7 @@ public class Auction implements Serializable {
 	private String name;
 	private int price;
 	private String description;
-	private int endTime;
+	private Date endTime;
 	
 		
 	public Auction(String category, String name, String price, String description,
@@ -20,8 +21,10 @@ public class Auction implements Serializable {
 		this.name = name;		
 		this.price = Integer.parseInt(price);
 		this.description = description;
-//		TODO date
-		this.endTime = Integer.parseInt(endTime);
+		
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND, Integer.parseInt(endTime));
+        this.endTime = calendar.getTime();
 	}
 	
 	public Auction(String category, String name, String price) {
@@ -87,7 +90,10 @@ public class Auction implements Serializable {
 	public String getCategory() {
 		return category;
 	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
 	
-	
-	
+		
 }

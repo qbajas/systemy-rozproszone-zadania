@@ -28,10 +28,8 @@ public class ClientImpl implements Client, Publisher {
 	Context context;
 	TopicSession topicSession;
 	Set<Auction> auctions;
-	
-//	TODO client id
-//	TODO checking finished auctions in a new thread
 
+	
 	public static void main(String[] args) throws NamingException,
 			JMSException, IOException {
 

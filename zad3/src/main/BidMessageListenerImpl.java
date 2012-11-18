@@ -1,6 +1,7 @@
 package main;
 
 import java.io.ObjectInputStream;
+import java.util.Calendar;
 
 import interfaces.Publisher;
 
@@ -29,14 +30,17 @@ public class BidMessageListenerImpl implements MessageListener {
 			}
 
 			if (publisher.getAuctions().contains(auction)) {
-				System.out.println("Received a new bid.");
 				for (Auction setAuction : publisher.getAuctions()) {
 					if (setAuction.equals(auction)) {
-						if (setAuction.getPrice() < auction.getPrice()) {
+						if (setAuction.getPrice() < auction.getPrice() && 
+								setAuction.getEndTime().compareTo(Calendar.getInstance().getTime()) > 0) {
 							setAuction.setPrice(auction.getPrice());
 							auction = setAuction;
-							System.out.println("New highest bid in Your auction !:\n" + auction.printDescription());
+							System.out.println("New highest bid in Your auction !:\n" 
+									+ auction.printDescription());
 							publisher.newHighestBid(auction);
+						}else{
+							System.out.println("Received bid was too low or the auction is finished.");
 						}
 						break;
 					}
