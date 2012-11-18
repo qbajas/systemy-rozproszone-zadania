@@ -77,7 +77,6 @@ public class ClientImpl implements Client, Publisher {
 		try {
 			// Topic
 			Topic topic = (Topic) context.lookup(topicName);
-			System.out.println("Topic OK");
 
 			// CONSUMER
 			receiver = topicSession.createSubscriber(topic);
@@ -96,7 +95,6 @@ public class ClientImpl implements Client, Publisher {
 		try {
 			// Topic
 			Topic topic = (Topic) context.lookup(topicName);
-			System.out.println("Topic OK");
 
 			// PRODUCER
 			sender = topicSession.createPublisher(topic);
@@ -128,7 +126,6 @@ public class ClientImpl implements Client, Publisher {
 		try {
 			// Topic
 			Topic topic = (Topic) context.lookup(categoryName);
-			System.out.println("Topic OK");
 
 			// PRODUCER
 			sender = topicSession.createPublisher(topic);
@@ -150,7 +147,18 @@ public class ClientImpl implements Client, Publisher {
 
 	@Override
 	public void newHighestBid(Auction auction) {
-		// TODO send txt msg		
+		try {
+			// Topic
+			Topic topic = (Topic) context.lookup(auction.getCategory());
+	
+			// PRODUCER
+			TopicPublisher sender = topicSession.createPublisher(topic);
+			
+			TextMessage message = topicSession.createTextMessage("New highest bid in auction !:\n" + auction.printDescription());
+			sender.send(message);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override

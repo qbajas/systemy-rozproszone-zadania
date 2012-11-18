@@ -76,6 +76,17 @@ public class Auction implements Serializable {
 	
 
 
+	public void setPrice(int price) {
+		this.price = price;
+	}	
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
 	
 	
 	
