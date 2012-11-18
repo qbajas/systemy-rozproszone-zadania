@@ -1,5 +1,6 @@
 package main;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Auction {
@@ -10,6 +11,28 @@ public class Auction {
 	private String description;
 	private Date endTime;
 	
+		
+	public Auction(String category, String name, String price, String description,
+			String endTime) {
+		super();
+		this.category = category;
+		this.name = name;		
+		this.price = Integer.parseInt(price);
+		this.description = description;
+//		TODO date
+//		this.endTime = endTime;
+	}
+	
+	
+	public String printDescription(){
+		String desc="";
+		desc += " Category: " + category + "\n";
+		desc += " Name: " + name+ "\n";
+		desc += " Current price: " + price+ "\n";
+		desc += " Description: " + description+ "\n";
+		desc += " End time: " + endTime+ "\n";
+		return desc;
+	}
 	
 	
 	@Override

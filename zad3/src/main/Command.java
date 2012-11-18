@@ -34,8 +34,7 @@ public class Command {
 			client.subscribe(subcommands[1]);
 			break;
 		case "publish":
-			client.publish(subcommands[1]);
-//			 TODO more args
+			client.publish(subcommands[1],subcommands[2],subcommands[3],subcommands[4],subcommands[5]);
 			break;
 		case "bid":
 			// TODO

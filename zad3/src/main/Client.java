@@ -10,6 +10,6 @@ public interface Client {
 	
 	public void subscribe(String topicName);
 
-	public TopicPublisher publish(String topicName);
+	public TopicPublisher publish(String topicName, String auctionName, String startingPrice, String description, String secondsToEnd);
 	
 }
