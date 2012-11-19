@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
@@ -91,33 +93,48 @@ public class ClientImpl implements Client, Publisher {
 	@Override
 	public TopicPublisher publish(String topicName, String auctionName,
 			String startingPrice, String description, String secondsToEnd) {
-		TopicPublisher sender = null;
+		TopicPublisher returnValue = null;
 		try {
 			// Topic
 			Topic topic = (Topic) context.lookup(topicName);
 
 			// PRODUCER
-			sender = topicSession.createPublisher(topic);
+			final TopicPublisher sender = topicSession.createPublisher(topic);
 			// CONSUMER
-			TopicSubscriber receiver = topicSession.createSubscriber(topic, "bid = true",false);			
+			TopicSubscriber receiver = topicSession.createSubscriber(topic,
+					"bid = true", false);
 			receiver.setMessageListener(new BidMessageListenerImpl(this));
 
-			Auction a = new Auction(topicName, auctionName, startingPrice,
-					description, secondsToEnd);
+			final Auction a = new Auction(topicName, auctionName,
+					startingPrice, description, secondsToEnd);
 			if (auctions.add(a)) {
-				System.out.println("You published an auction in " + topicName + " category.");
-				TextMessage message = topicSession.createTextMessage("New auction:\n" + a.printDescription());
+				System.out.println("You published an auction in " + topicName
+						+ " category.");
+				TextMessage message = topicSession.createTextMessage("New auction:\n"
+								+ a.printDescription());
 				sender.send(message);
-			}else{
+
+				new Timer(true).schedule(new TimerTask() {
+					public void run() {
+						try {
+							TextMessage message = topicSession.createTextMessage("Auction ended !:\n"
+											+ a.printDescription());
+							sender.send(message);
+						} catch (Exception e) {
+							System.out.println(e);
+						}
+					}
+				}, a.getEndTime());
+			} else {
 				System.out.println("Auction with that name already exists !");
 			}
+			returnValue = sender;
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return sender;
+		return returnValue;
 	}
-
 	
 	
 	@Override
