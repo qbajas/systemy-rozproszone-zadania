@@ -35,12 +35,11 @@ public class BidMessageListenerImpl implements MessageListener {
 						if (setAuction.getPrice() < auction.getPrice() && 
 								setAuction.getEndTime().compareTo(Calendar.getInstance().getTime()) > 0) {
 							setAuction.setPrice(auction.getPrice());
-							auction = setAuction;
 							System.out.println("New highest bid in Your auction !:\n" 
-									+ auction.printDescription());
-							publisher.newHighestBid(auction);
+									+ setAuction.printDescription());
+							publisher.newHighestBid(setAuction);
 						}else{
-							System.out.println("Received bid was too low or the auction is finished.");
+//							System.out.println("Received bid was too low or the auction is finished.");
 						}
 						break;
 					}
