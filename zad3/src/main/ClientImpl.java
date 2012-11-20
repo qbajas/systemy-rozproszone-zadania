@@ -4,6 +4,7 @@ import interfaces.Client;
 import interfaces.Publisher;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
@@ -43,7 +44,7 @@ public class ClientImpl implements Client, Publisher {
 
 	public ClientImpl(String ip) throws NamingException, JMSException {
 		initialize(ip);
-		auctions = new HashSet<Auction>();
+		auctions = Collections.synchronizedSet(new HashSet<Auction>());
 	}
 
 	private void initialize(String ip) throws NamingException, JMSException {
