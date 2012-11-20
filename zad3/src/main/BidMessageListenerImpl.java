@@ -30,7 +30,7 @@ public class BidMessageListenerImpl implements MessageListener {
 			}
 
 			if (publisher.getAuctions().contains(auction)) {
-				synchronized(auction){
+				synchronized(publisher.getAuctions()){
 					for (Auction setAuction : publisher.getAuctions()) {
 						if (setAuction.equals(auction)) {
 							if (setAuction.getPrice() < auction.getPrice() && 
