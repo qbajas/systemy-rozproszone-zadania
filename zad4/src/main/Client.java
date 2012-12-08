@@ -3,20 +3,18 @@ package main;
 
 import java.util.List;
 
+import models.CallerImpl;
+
 import utils.Command;
 
 import generated.Event;
 import generated.EventManagerPrx;
 import generated.EventManagerPrxHelper;
-import interfaces.ClientInterface;
+import generated.User;
+import interfaces.Caller;
 
-public class Client implements ClientInterface {
+public class Client {
 	
-	EventManagerPrx eventManagerPrx;
-
-	public Client(EventManagerPrx eventManagerPrx) {
-		this.eventManagerPrx = eventManagerPrx;		
-	}
 	
 
 	public static void main(String[] args) {
@@ -27,9 +25,14 @@ public class Client implements ClientInterface {
 			Ice.ObjectPrx base = ic.stringToProxy("EventManager:default -p 10001");
 			EventManagerPrx eventManagerPrx = EventManagerPrxHelper.checkedCast(base);
 			if (eventManagerPrx == null)
-				throw new Error("Invalid proxy");
-		
-			Command command = new Command(new Client(eventManagerPrx));
+				throw new Error("Invalid proxy");		
+			
+			// login
+			User user = Command.login();
+			// create caller, which calls server in the name of client
+			Caller caller = new CallerImpl(eventManagerPrx, user);
+			// set caller for command
+			Command command = new Command(caller);
 			command.start();
 			
 		} catch (Ice.LocalException e) {
@@ -52,12 +55,6 @@ public class Client implements ClientInterface {
 	}
 
 	
-	@Override
-	public void listEvents() {
-		System.out.println("Events in the system: ");
-		for(Event event:eventManagerPrx.listEvents()){
-			System.out.println(event.toString());
-		}		
-	}
+
 
 }

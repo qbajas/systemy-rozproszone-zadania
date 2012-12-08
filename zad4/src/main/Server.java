@@ -2,7 +2,7 @@ package main;
 
 import java.util.List;
 import java.util.Set;
-import models.EventManagerI;
+import models.EventManagerImpl;
 
 
 import Ice.ObjectPrx;
@@ -17,12 +17,10 @@ public class Server {
 			ic = Ice.Util.initialize(args);
 			Ice.ObjectAdapter adapter = ic.createObjectAdapterWithEndpoints(
 					"EventManagerAdapter", "default -p 10001");
-			Ice.Object object = new EventManagerI();
+			Ice.Object object = new EventManagerImpl();
 			ObjectPrx op = adapter.add(object, ic.stringToIdentity("EventManager"));
-//			adapter.addFacet(new DirectoryV2I(), op.ice_getIdentity(), "DirectoryV2");
 			adapter.activate();
 			System.out.println("The server started.");
-
 			ic.waitForShutdown();
 		} catch (Ice.LocalException e) {
 			e.printStackTrace();
