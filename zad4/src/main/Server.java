@@ -16,7 +16,7 @@ public class Server {
 		try {
 			ic = Ice.Util.initialize(args);
 			Ice.ObjectAdapter adapter = ic.createObjectAdapterWithEndpoints(
-					"EventManagerAdapter", "default -p 10000");
+					"EventManagerAdapter", "default -p 10001");
 			Ice.Object object = new EventManagerI();
 			ObjectPrx op = adapter.add(object, ic.stringToIdentity("EventManager"));
 //			adapter.addFacet(new DirectoryV2I(), op.ice_getIdentity(), "DirectoryV2");

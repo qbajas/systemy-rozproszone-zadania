@@ -22,39 +22,39 @@ package generated;
 
 public interface EventManagerPrx extends Ice.ObjectPrx
 {
-    public String createEvent(String eventName, String eventDesc, int daysFromNow);
+    public String createEvent(String eventName, String eventDesc, int daysFromNow, User u);
 
-    public String createEvent(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx);
+    public String createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, Ice.Callback __cb);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, Callback_EventManager_createEvent __cb);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u, Callback_EventManager_createEvent __cb);
 
-    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx, Callback_EventManager_createEvent __cb);
+    public Ice.AsyncResult begin_createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Callback_EventManager_createEvent __cb);
 
     public String end_createEvent(Ice.AsyncResult __result);
 
-    public boolean subscribe(String eventName);
+    public boolean subscribe(String eventName, User u);
 
-    public boolean subscribe(String eventName, java.util.Map<String, String> __ctx);
+    public boolean subscribe(String eventName, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_subscribe(String eventName);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u);
 
-    public Ice.AsyncResult begin_subscribe(String eventName, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_subscribe(String eventName, Ice.Callback __cb);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_subscribe(String eventName, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_subscribe(String eventName, Callback_EventManager_subscribe __cb);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u, Callback_EventManager_subscribe __cb);
 
-    public Ice.AsyncResult begin_subscribe(String eventName, java.util.Map<String, String> __ctx, Callback_EventManager_subscribe __cb);
+    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, Callback_EventManager_subscribe __cb);
 
     public boolean end_subscribe(Ice.AsyncResult __result);
 
@@ -76,21 +76,21 @@ public interface EventManagerPrx extends Ice.ObjectPrx
 
     public java.util.List<Event> end_listEvents(Ice.AsyncResult __result);
 
-    public String modify(String eventName, String eventDesc, int daysFromNow);
+    public String modify(String eventName, String eventDesc, int daysFromNow, User u);
 
-    public String modify(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx);
+    public String modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, Ice.Callback __cb);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, Callback_EventManager_modify __cb);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, Callback_EventManager_modify __cb);
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, java.util.Map<String, String> __ctx, Callback_EventManager_modify __cb);
+    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Callback_EventManager_modify __cb);
 
     public String end_modify(Ice.AsyncResult __result);
 }

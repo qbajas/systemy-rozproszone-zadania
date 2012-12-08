@@ -78,9 +78,9 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
     }
 
     public final String
-    createEvent(String eventName, String eventDesc, int daysFromNow)
+    createEvent(String eventName, String eventDesc, int daysFromNow, User u)
     {
-        return createEvent(eventName, eventDesc, daysFromNow, null);
+        return createEvent(eventName, eventDesc, daysFromNow, u, null);
     }
 
     public final java.util.List<Event>
@@ -90,15 +90,15 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
     }
 
     public final String
-    modify(String eventName, String eventDesc, int daysFromNow)
+    modify(String eventName, String eventDesc, int daysFromNow, User u)
     {
-        return modify(eventName, eventDesc, daysFromNow, null);
+        return modify(eventName, eventDesc, daysFromNow, u, null);
     }
 
     public final boolean
-    subscribe(String eventName)
+    subscribe(String eventName, User u)
     {
-        return subscribe(eventName, null);
+        return subscribe(eventName, u, null);
     }
 
     public static Ice.DispatchStatus
@@ -113,9 +113,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventDesc = __is.readString();
         int daysFromNow;
         daysFromNow = __is.readInt();
+        UserHolder u = new UserHolder();
+        __is.readObject(u);
+        __is.readPendingObjects();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.createEvent(eventName, eventDesc, daysFromNow, __current);
+        String __ret = __obj.createEvent(eventName, eventDesc, daysFromNow, u.value, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -128,9 +131,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         __is.startReadEncaps();
         String eventName;
         eventName = __is.readString();
+        UserHolder u = new UserHolder();
+        __is.readObject(u);
+        __is.readPendingObjects();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        boolean __ret = __obj.subscribe(eventName, __current);
+        boolean __ret = __obj.subscribe(eventName, u.value, __current);
         __os.writeBool(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -159,9 +165,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventDesc = __is.readString();
         int daysFromNow;
         daysFromNow = __is.readInt();
+        UserHolder u = new UserHolder();
+        __is.readObject(u);
+        __is.readPendingObjects();
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.modify(eventName, eventDesc, daysFromNow, __current);
+        String __ret = __obj.modify(eventName, eventDesc, daysFromNow, u.value, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }

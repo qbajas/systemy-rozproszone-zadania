@@ -19,10 +19,10 @@ module generated
 	
 	interface EventManager
 	{			
-		string createEvent(string eventName, string eventDesc, int daysFromNow);
-		bool subscribe(string eventName);
+		string createEvent(string eventName, string eventDesc, int daysFromNow, User u);
+		bool subscribe(string eventName, User u);
 		events listEvents();
-		string modify(string eventName, string eventDesc, int daysFromNow);		
+		string modify(string eventName, string eventDesc, int daysFromNow, User u);		
 	};
 	
 };
