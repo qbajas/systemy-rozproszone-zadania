@@ -7,6 +7,13 @@ import generated.Event;
 import generated._EventManagerDisp;
 
 public class EventManagerI extends _EventManagerDisp {
+	
+	List<Event> events;
+	
+	
+	public EventManagerI() {
+		super();
+	}
 
 	@Override
 	public String createEvent(String eventName, String eventDesc,
@@ -32,8 +39,8 @@ public class EventManagerI extends _EventManagerDisp {
 
 	@Override
 	public List<Event> listEvents(Current __current) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Listing events for client " + __current.toString());
+		return events;
 	}
 
 }

@@ -1,9 +1,11 @@
 package main;
 
-import ice.DirectoryPrx;
-import ice.DirectoryPrxHelper;
-import ice.DirectoryV2Prx;
-import ice.DirectoryV2PrxHelper;
+
+import java.util.List;
+
+import generated.Event;
+import generated.EventManagerPrx;
+import generated.EventManagerPrxHelper;
 import interfaces.ClientInterface;
 
 public class Client implements ClientInterface {
@@ -13,24 +15,26 @@ public class Client implements ClientInterface {
 		Ice.Communicator ic = null;
 		try {
 			ic = Ice.Util.initialize(args);
-			Ice.ObjectPrx base = ic.stringToProxy("Directory:default -p 10000");
-			ice.DirectoryPrx dirPrx = ice.DirectoryPrxHelper
-					.checkedCast(base);			
-			ice.DirectoryV2Prx dirPrxV2 = DirectoryV2PrxHelper.checkedCast(dirPrx, "DirectoryV2");
+			Ice.ObjectPrx base = ic.stringToProxy("EventManager:default -p 10000");
+			EventManagerPrx eventManagerPrx = EventManagerPrxHelper.checkedCast(base);
+//			ice.DirectoryV2Prx dirPrxV2 = DirectoryV2PrxHelper.checkedCast(dirPrx, "DirectoryV2");
 			
-			if (dirPrx == null)
+			if (eventManagerPrx == null)
 				throw new Error("Invalid proxy");
+
+			List<Event> events = eventManagerPrx.listEvents();
 			
-			String[] entries = dirPrx.listContent("/");
-			System.out.println("-------- FILES AND DIRS : ------------");
-			for (String entry : entries)
-				System.out.println(entry);
+			System.out.println("List of events: ");
+			for(Event event:events){
+				System.out.println(event.name);
+			}
 			
-			entries = dirPrxV2.listFiles("/");
-			System.out.println("-------- FILES ONLY : ------------");
-			for (String entry : entries)
-				System.out.println(entry);
 			
+//			entries = dirPrxV2.listFiles("/");
+//			System.out.println("-------- FILES ONLY : ------------");
+//			for (String entry : entries)
+//				System.out.println(entry);
+//			
 			
 		} catch (Ice.LocalException e) {
 			e.printStackTrace();

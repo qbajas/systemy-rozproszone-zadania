@@ -2,12 +2,9 @@ package main;
 
 import java.util.List;
 import java.util.Set;
+import models.EventManagerI;
 
-import models.Event;
 
-
-import ice.DirectoryI;
-import ice.DirectoryV2I;
 import Ice.ObjectPrx;
 
 public class Server {
@@ -19,10 +16,10 @@ public class Server {
 		try {
 			ic = Ice.Util.initialize(args);
 			Ice.ObjectAdapter adapter = ic.createObjectAdapterWithEndpoints(
-					"DirectoryAdapter", "default -p 10000");
-			Ice.Object object = new DirectoryI();
-			ObjectPrx op = adapter.add(object, ic.stringToIdentity("Directory"));
-			adapter.addFacet(new DirectoryV2I(), op.ice_getIdentity(), "DirectoryV2");
+					"EventManagerAdapter", "default -p 10000");
+			Ice.Object object = new EventManagerI();
+			ObjectPrx op = adapter.add(object, ic.stringToIdentity("EventManager"));
+//			adapter.addFacet(new DirectoryV2I(), op.ice_getIdentity(), "DirectoryV2");
 			adapter.activate();
 			System.out.println("The server started.");
 
