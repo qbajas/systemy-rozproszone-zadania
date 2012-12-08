@@ -25,7 +25,7 @@ public interface _EventManagerDel extends Ice._ObjectDel
     String createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper;
 
-    boolean subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
+    String subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper;
 
     java.util.List<Event> listEvents(java.util.Map<String, String> __ctx)

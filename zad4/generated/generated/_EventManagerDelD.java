@@ -181,13 +181,13 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
         return __result.value;
     }
 
-    public boolean
+    public String
     subscribe(final String eventName, final User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
         __initCurrent(__current, "subscribe", Ice.OperationMode.Normal, __ctx);
-        final Ice.BooleanHolder __result = new Ice.BooleanHolder();
+        final Ice.StringHolder __result = new Ice.StringHolder();
         IceInternal.Direct __direct = null;
         try
         {

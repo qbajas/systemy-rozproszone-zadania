@@ -1,7 +1,7 @@
 module generated
 {
 
-	class User{
+	struct User{
 		string nick;
 	};	
 
@@ -20,7 +20,7 @@ module generated
 	interface EventManager
 	{			
 		string createEvent(string eventName, string eventDesc, int daysFromNow, User u);
-		bool subscribe(string eventName, User u);
+		string subscribe(string eventName, User u);
 		events listEvents();
 		string modify(string eventName, string eventDesc, int daysFromNow, User u);		
 	};

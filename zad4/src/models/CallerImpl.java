@@ -25,5 +25,12 @@ public class CallerImpl implements Caller {
 		}
 	}
 
+	@Override
+	public void createEvent(String eventName, String eventDesc,
+			String daysFromNow) {
+		String response = eventManagerPrx.createEvent(eventName, eventDesc, Integer.parseInt(daysFromNow), user);
+		System.out.println("Event created. ");
+	}
+
 
 }

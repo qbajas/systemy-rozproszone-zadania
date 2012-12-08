@@ -24,7 +24,7 @@ public interface _EventManagerOperationsNC
 {
     String createEvent(String eventName, String eventDesc, int daysFromNow, User u);
 
-    boolean subscribe(String eventName, User u);
+    String subscribe(String eventName, User u);
 
     java.util.List<Event> listEvents();
 

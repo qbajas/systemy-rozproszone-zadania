@@ -40,9 +40,9 @@ public interface EventManagerPrx extends Ice.ObjectPrx
 
     public String end_createEvent(Ice.AsyncResult __result);
 
-    public boolean subscribe(String eventName, User u);
+    public String subscribe(String eventName, User u);
 
-    public boolean subscribe(String eventName, User u, java.util.Map<String, String> __ctx);
+    public String subscribe(String eventName, User u, java.util.Map<String, String> __ctx);
 
     public Ice.AsyncResult begin_subscribe(String eventName, User u);
 
@@ -56,7 +56,7 @@ public interface EventManagerPrx extends Ice.ObjectPrx
 
     public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, Callback_EventManager_subscribe __cb);
 
-    public boolean end_subscribe(Ice.AsyncResult __result);
+    public String end_subscribe(Ice.AsyncResult __result);
 
     public java.util.List<Event> listEvents();
 

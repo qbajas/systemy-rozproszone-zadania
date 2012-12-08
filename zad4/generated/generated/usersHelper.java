@@ -34,7 +34,7 @@ public final class usersHelper
             __os.writeSize(__v.size());
             for(User __elem : __v)
             {
-                __os.writeObject(__elem);
+                __elem.__write(__os);
             }
         }
     }
@@ -44,12 +44,13 @@ public final class usersHelper
     {
         java.util.List<User> __v;
         __v = new java.util.LinkedList<User>();
-        final int __len0 = __is.readAndCheckSeqSize(4);
-        final String __type0 = User.ice_staticId();
+        final int __len0 = __is.readAndCheckSeqSize(1);
         for(int __i0 = 0; __i0 < __len0; __i0++)
         {
-            __v.add(null);
-            __is.readObject(new IceInternal.ListPatcher<User>(__v, User.class, __type0, __i0));
+            User __elem;
+            __elem = new User();
+            __elem.__read(__is);
+            __v.add(__elem);
         }
         return __v;
     }

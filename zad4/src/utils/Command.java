@@ -45,6 +45,10 @@ public class Command {
 			caller.listEvents();
 			return;
 		}
+		if (subcommands[0].equals("create")) {
+			caller.createEvent(subcommands[1],subcommands[2],subcommands[3]);
+			return;
+		}
 		System.out.println("Wrong command !");
 		printCommands();
 	}
@@ -54,7 +58,7 @@ public class Command {
 		System.out.println("  create EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
 		System.out.println("  subscribe EVENT_NAME");
 		System.out.println("  list");
-		System.out.println("  modify EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
+		System.out.println("  modify EVENT_NUMBER EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
 	}
 
 

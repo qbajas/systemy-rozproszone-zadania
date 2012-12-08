@@ -113,32 +113,10 @@ public class Event extends Ice.ObjectImpl
         __os.writeString(name);
         __os.writeString(description);
         __os.writeInt(daysFromNow);
-        __os.writeObject(createdBy);
+        createdBy.__write(__os);
         usersHelper.write(__os, subscribedUsers);
         __os.endWriteSlice();
         super.__write(__os);
-    }
-
-    private class Patcher implements IceInternal.Patcher
-    {
-        public void
-        patch(Ice.Object v)
-        {
-            try
-            {
-                createdBy = (User)v;
-            }
-            catch(ClassCastException ex)
-            {
-                IceInternal.Ex.throwUOE(type(), v.ice_id());
-            }
-        }
-
-        public String
-        type()
-        {
-            return "::generated::User";
-        }
     }
 
     public void
@@ -152,7 +130,8 @@ public class Event extends Ice.ObjectImpl
         name = __is.readString();
         description = __is.readString();
         daysFromNow = __is.readInt();
-        __is.readObject(new Patcher());
+        createdBy = new User();
+        createdBy.__read(__is);
         subscribedUsers = usersHelper.read(__is);
         __is.endReadSlice();
         super.__read(__is, true);

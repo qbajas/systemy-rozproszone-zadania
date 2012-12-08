@@ -1,5 +1,6 @@
 package models;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import Ice.Current;
@@ -11,6 +12,11 @@ public class EventManagerImpl extends _EventManagerDisp {
 	
 	List<Event> events;
 	
+	
+	public EventManagerImpl() {
+		events = new LinkedList<Event>();
+	}
+
 	@Override
 	public List<Event> listEvents(Current __current) {
 		System.out.println("Listing events for client " + __current.toString());
@@ -20,14 +26,15 @@ public class EventManagerImpl extends _EventManagerDisp {
 	@Override
 	public String createEvent(String eventName, String eventDesc,
 			int daysFromNow, User u, Current __current) {
-		// TODO Auto-generated method stub
+		Event event = new Event(eventName, eventDesc, daysFromNow, u, new LinkedList<User>());
+		events.add(event);
 		return null;
 	}
 
 	@Override
-	public boolean subscribe(String eventName, User u, Current __current) {
+	public String subscribe(String eventName, User u, Current __current) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override

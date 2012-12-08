@@ -20,8 +20,10 @@
 
 package generated;
 
-public class User extends Ice.ObjectImpl
+public class User implements java.lang.Cloneable, java.io.Serializable
 {
+    public String nick;
+
     public User()
     {
     }
@@ -31,114 +33,73 @@ public class User extends Ice.ObjectImpl
         this.nick = nick;
     }
 
-    private static class __F implements Ice.ObjectFactory
+    public boolean
+    equals(java.lang.Object rhs)
     {
-        public Ice.Object
-        create(String type)
+        if(this == rhs)
         {
-            assert(type.equals(ice_staticId()));
-            return new User();
+            return true;
+        }
+        User _r = null;
+        try
+        {
+            _r = (User)rhs;
+        }
+        catch(ClassCastException ex)
+        {
         }
 
-        public void
-        destroy()
+        if(_r != null)
         {
+            if(nick != _r.nick)
+            {
+                if(nick == null || _r.nick == null || !nick.equals(_r.nick))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
-    }
-    private static Ice.ObjectFactory _factory = new __F();
 
-    public static Ice.ObjectFactory
-    ice_factory()
-    {
-        return _factory;
+        return false;
     }
 
-    public static final String[] __ids =
+    public int
+    hashCode()
     {
-        "::Ice::Object",
-        "::generated::User"
-    };
-
-    public boolean
-    ice_isA(String s)
-    {
-        return java.util.Arrays.binarySearch(__ids, s) >= 0;
+        int __h = 0;
+        if(nick != null)
+        {
+            __h = 5 * __h + nick.hashCode();
+        }
+        return __h;
     }
 
-    public boolean
-    ice_isA(String s, Ice.Current __current)
+    public java.lang.Object
+    clone()
     {
-        return java.util.Arrays.binarySearch(__ids, s) >= 0;
-    }
-
-    public String[]
-    ice_ids()
-    {
-        return __ids;
-    }
-
-    public String[]
-    ice_ids(Ice.Current __current)
-    {
-        return __ids;
-    }
-
-    public String
-    ice_id()
-    {
-        return __ids[1];
-    }
-
-    public String
-    ice_id(Ice.Current __current)
-    {
-        return __ids[1];
-    }
-
-    public static String
-    ice_staticId()
-    {
-        return __ids[1];
+        java.lang.Object o = null;
+        try
+        {
+            o = super.clone();
+        }
+        catch(CloneNotSupportedException ex)
+        {
+            assert false; // impossible
+        }
+        return o;
     }
 
     public void
     __write(IceInternal.BasicStream __os)
     {
-        __os.writeTypeId(ice_staticId());
-        __os.startWriteSlice();
         __os.writeString(nick);
-        __os.endWriteSlice();
-        super.__write(__os);
     }
 
     public void
-    __read(IceInternal.BasicStream __is, boolean __rid)
+    __read(IceInternal.BasicStream __is)
     {
-        if(__rid)
-        {
-            __is.readTypeId();
-        }
-        __is.startReadSlice();
         nick = __is.readString();
-        __is.endReadSlice();
-        super.__read(__is, true);
     }
-
-    public void
-    __write(Ice.OutputStream __outS)
-    {
-        Ice.MarshalException ex = new Ice.MarshalException();
-        ex.reason = "type generated::User was not generated with stream support";
-        throw ex;
-    }
-
-    public void
-    __read(Ice.InputStream __inS, boolean __rid)
-    {
-        Ice.MarshalException ex = new Ice.MarshalException();
-        ex.reason = "type generated::User was not generated with stream support";
-        throw ex;
-    }
-
-    public String nick;
 }

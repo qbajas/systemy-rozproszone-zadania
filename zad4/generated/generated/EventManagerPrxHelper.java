@@ -106,8 +106,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
             __os.writeString(eventName);
             __os.writeString(eventDesc);
             __os.writeInt(daysFromNow);
-            __os.writeObject(u);
-            __os.writePendingObjects();
+            u.__write(__os);
             __os.endWriteEncaps();
             __result.__send(true);
         }
@@ -338,8 +337,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
             __os.writeString(eventName);
             __os.writeString(eventDesc);
             __os.writeInt(daysFromNow);
-            __os.writeObject(u);
-            __os.writePendingObjects();
+            u.__write(__os);
             __os.endWriteEncaps();
             __result.__send(true);
         }
@@ -372,19 +370,19 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __ret;
     }
 
-    public boolean
+    public String
     subscribe(String eventName, User u)
     {
         return subscribe(eventName, u, null, false);
     }
 
-    public boolean
+    public String
     subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
     {
         return subscribe(eventName, u, __ctx, true);
     }
 
-    private boolean
+    private String
     subscribe(String eventName, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         if(__explicitCtx && __ctx == null)
@@ -454,8 +452,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
             __result.__prepare(__subscribe_name, Ice.OperationMode.Normal, __ctx, __explicitCtx);
             IceInternal.BasicStream __os = __result.__os();
             __os.writeString(eventName);
-            __os.writeObject(u);
-            __os.writePendingObjects();
+            u.__write(__os);
             __os.endWriteEncaps();
             __result.__send(true);
         }
@@ -466,7 +463,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __result;
     }
 
-    public boolean end_subscribe(Ice.AsyncResult __result)
+    public String end_subscribe(Ice.AsyncResult __result)
     {
         Ice.AsyncResult.__check(__result, this, __subscribe_name);
         if(!__result.__wait())
@@ -480,10 +477,10 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
             }
         }
-        boolean __ret;
+        String __ret;
         IceInternal.BasicStream __is = __result.__is();
         __is.startReadEncaps();
-        __ret = __is.readBool();
+        __ret = __is.readString();
         __is.endReadEncaps();
         return __ret;
     }

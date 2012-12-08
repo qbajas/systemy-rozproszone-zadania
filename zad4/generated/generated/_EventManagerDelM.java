@@ -35,8 +35,7 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
                 __os.writeString(eventName);
                 __os.writeString(eventDesc);
                 __os.writeInt(daysFromNow);
-                __os.writeObject(u);
-                __os.writePendingObjects();
+                u.__write(__os);
             }
             catch(Ice.LocalException __ex)
             {
@@ -127,8 +126,7 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
                 __os.writeString(eventName);
                 __os.writeString(eventDesc);
                 __os.writeInt(daysFromNow);
-                __os.writeObject(u);
-                __os.writePendingObjects();
+                u.__write(__os);
             }
             catch(Ice.LocalException __ex)
             {
@@ -166,7 +164,7 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
         }
     }
 
-    public boolean
+    public String
     subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
@@ -177,8 +175,7 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
             {
                 IceInternal.BasicStream __os = __og.os();
                 __os.writeString(eventName);
-                __os.writeObject(u);
-                __os.writePendingObjects();
+                u.__write(__os);
             }
             catch(Ice.LocalException __ex)
             {
@@ -200,8 +197,8 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
                 }
                 IceInternal.BasicStream __is = __og.is();
                 __is.startReadEncaps();
-                boolean __ret;
-                __ret = __is.readBool();
+                String __ret;
+                __ret = __is.readString();
                 __is.endReadEncaps();
                 return __ret;
             }

@@ -95,7 +95,7 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         return modify(eventName, eventDesc, daysFromNow, u, null);
     }
 
-    public final boolean
+    public final String
     subscribe(String eventName, User u)
     {
         return subscribe(eventName, u, null);
@@ -113,12 +113,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventDesc = __is.readString();
         int daysFromNow;
         daysFromNow = __is.readInt();
-        UserHolder u = new UserHolder();
-        __is.readObject(u);
-        __is.readPendingObjects();
+        User u;
+        u = new User();
+        u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.createEvent(eventName, eventDesc, daysFromNow, u.value, __current);
+        String __ret = __obj.createEvent(eventName, eventDesc, daysFromNow, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -131,13 +131,13 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         __is.startReadEncaps();
         String eventName;
         eventName = __is.readString();
-        UserHolder u = new UserHolder();
-        __is.readObject(u);
-        __is.readPendingObjects();
+        User u;
+        u = new User();
+        u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        boolean __ret = __obj.subscribe(eventName, u.value, __current);
-        __os.writeBool(__ret);
+        String __ret = __obj.subscribe(eventName, u, __current);
+        __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
 
@@ -165,12 +165,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventDesc = __is.readString();
         int daysFromNow;
         daysFromNow = __is.readInt();
-        UserHolder u = new UserHolder();
-        __is.readObject(u);
-        __is.readPendingObjects();
+        User u;
+        u = new User();
+        u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.modify(eventName, eventDesc, daysFromNow, u.value, __current);
+        String __ret = __obj.modify(eventName, eventDesc, daysFromNow, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }

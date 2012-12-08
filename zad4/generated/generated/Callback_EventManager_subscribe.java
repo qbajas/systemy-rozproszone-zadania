@@ -22,12 +22,12 @@ package generated;
 
 public abstract class Callback_EventManager_subscribe extends Ice.TwowayCallback
 {
-    public abstract void response(boolean __ret);
+    public abstract void response(String __ret);
 
     public final void __completed(Ice.AsyncResult __result)
     {
         EventManagerPrx __proxy = (EventManagerPrx)__result.getProxy();
-        boolean __ret = false;
+        String __ret = null;
         try
         {
             __ret = __proxy.end_subscribe(__result);

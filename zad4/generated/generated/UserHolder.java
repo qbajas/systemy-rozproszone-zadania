@@ -20,7 +20,7 @@
 
 package generated;
 
-public final class UserHolder extends Ice.ObjectHolderBase<User>
+public final class UserHolder
 {
     public
     UserHolder()
@@ -33,22 +33,5 @@ public final class UserHolder extends Ice.ObjectHolderBase<User>
         this.value = value;
     }
 
-    public void
-    patch(Ice.Object v)
-    {
-        try
-        {
-            value = (User)v;
-        }
-        catch(ClassCastException ex)
-        {
-            IceInternal.Ex.throwUOE(type(), v.ice_id());
-        }
-    }
-
-    public String
-    type()
-    {
-        return User.ice_staticId();
-    }
+    public User value;
 }
