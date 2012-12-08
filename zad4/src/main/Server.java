@@ -3,7 +3,8 @@ package main;
 import java.util.List;
 import java.util.Set;
 
-import domain.Event;
+import models.Event;
+
 
 import ice.DirectoryI;
 import ice.DirectoryV2I;
