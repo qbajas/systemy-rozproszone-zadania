@@ -43,9 +43,10 @@ public class Command {
 
 	public void printCommands() {
 		System.out.println("Available commands: ");
-		System.out.println("  subscribe CATEGORY_NAME");
-		System.out.println("  publish CATEGORY_NAME AUCTION_NAME STARTING_PRICE DESCRIPTION SECONDS_TO_END");
-		System.out.println("  bid CATEGORY_NAME AUCTION_NAME PRICE");
+		System.out.println("  create EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
+		System.out.println("  subscribe EVENT_NAME");
+		System.out.println("  list");
+		System.out.println("  modify EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
 	}
 
 }

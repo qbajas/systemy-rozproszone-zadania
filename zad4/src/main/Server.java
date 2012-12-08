@@ -1,10 +1,16 @@
 package main;
 
+import java.util.List;
+import java.util.Set;
+
+import domain.Event;
+
 import ice.DirectoryI;
 import ice.DirectoryV2I;
 import Ice.ObjectPrx;
 
 public class Server {
+	
 
 	public static void main(String[] args) {
 		int status = 0;

@@ -1,17 +1,14 @@
 #include <BuiltinSequences.ice>
 
-module FileSystem
+module ice
 {
-	exception DirectoryNotExistsException {};
-
-	interface Directory
-	{
-		idempotent Ice::StringSeq listContent(string dirPath) throws DirectoryNotExistsException;
-	};
 	
-	interface DirectoryV2
-	{
-		idempotent Ice::StringSeq listFiles(string dirPath) throws DirectoryNotExistsException;
-	};
+	interface EventManager
+	{			
+		string createEvent(string eventName, string eventDesc, int daysFromNow);
+		bool subscribe(string eventName);
+		sequence<Event> listEvents();
+		string modify(string eventName, string eventDesc, int daysFromNow);		
+	}
 	
 };
