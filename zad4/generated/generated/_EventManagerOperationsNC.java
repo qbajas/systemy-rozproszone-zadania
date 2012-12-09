@@ -24,9 +24,9 @@ public interface _EventManagerOperationsNC
 {
     String createEvent(String eventName, String eventDesc, int daysFromNow, User u);
 
-    String subscribe(String eventName, User u);
+    String subscribe(int eventId, User u);
 
-    java.util.List<Event> listEvents();
+    java.util.Map<java.lang.Integer, Event> listEvents();
 
-    String modify(String eventName, String eventDesc, int daysFromNow, User u);
+    String modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u);
 }

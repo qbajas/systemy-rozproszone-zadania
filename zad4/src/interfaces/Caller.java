@@ -6,4 +6,6 @@ public interface Caller {
 
 	void createEvent(String eventName, String eventDesc, String daysFromNow);
 
+	void subscribe(String eventId);
+
 }

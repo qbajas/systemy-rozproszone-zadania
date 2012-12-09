@@ -83,22 +83,22 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         return createEvent(eventName, eventDesc, daysFromNow, u, null);
     }
 
-    public final java.util.List<Event>
+    public final java.util.Map<java.lang.Integer, Event>
     listEvents()
     {
         return listEvents(null);
     }
 
     public final String
-    modify(String eventName, String eventDesc, int daysFromNow, User u)
+    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u)
     {
-        return modify(eventName, eventDesc, daysFromNow, u, null);
+        return modify(eventId, eventName, eventDesc, daysFromNow, u, null);
     }
 
     public final String
-    subscribe(String eventName, User u)
+    subscribe(int eventId, User u)
     {
-        return subscribe(eventName, u, null);
+        return subscribe(eventId, u, null);
     }
 
     public static Ice.DispatchStatus
@@ -129,14 +129,14 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
-        String eventName;
-        eventName = __is.readString();
+        int eventId;
+        eventId = __is.readInt();
         User u;
         u = new User();
         u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.subscribe(eventName, u, __current);
+        String __ret = __obj.subscribe(eventId, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -147,7 +147,7 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         __inS.is().skipEmptyEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        java.util.List<Event> __ret = __obj.listEvents(__current);
+        java.util.Map<java.lang.Integer, Event> __ret = __obj.listEvents(__current);
         eventsHelper.write(__os, __ret);
         __os.writePendingObjects();
         return Ice.DispatchStatus.DispatchOK;
@@ -159,6 +159,8 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         __checkMode(Ice.OperationMode.Normal, __current.mode);
         IceInternal.BasicStream __is = __inS.is();
         __is.startReadEncaps();
+        int eventId;
+        eventId = __is.readInt();
         String eventName;
         eventName = __is.readString();
         String eventDesc;
@@ -170,7 +172,7 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.modify(eventName, eventDesc, daysFromNow, u, __current);
+        String __ret = __obj.modify(eventId, eventName, eventDesc, daysFromNow, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }

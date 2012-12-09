@@ -75,7 +75,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
         return __result.value;
     }
 
-    public java.util.List<Event>
+    public java.util.Map<java.lang.Integer, Event>
     listEvents(java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
@@ -129,7 +129,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
     }
 
     public String
-    modify(final String eventName, final String eventDesc, final int daysFromNow, final User u, java.util.Map<String, String> __ctx)
+    modify(final int eventId, final String eventName, final String eventDesc, final int daysFromNow, final User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
@@ -151,7 +151,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
                     {
                         throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
                     }
-                    __result.value = __servant.modify(eventName, eventDesc, daysFromNow, u, __current);
+                    __result.value = __servant.modify(eventId, eventName, eventDesc, daysFromNow, u, __current);
                     return Ice.DispatchStatus.DispatchOK;
                 }
             };
@@ -182,7 +182,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
     }
 
     public String
-    subscribe(final String eventName, final User u, java.util.Map<String, String> __ctx)
+    subscribe(final int eventId, final User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
@@ -204,7 +204,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
                     {
                         throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
                     }
-                    __result.value = __servant.subscribe(eventName, u, __current);
+                    __result.value = __servant.subscribe(eventId, u, __current);
                     return Ice.DispatchStatus.DispatchOK;
                 }
             };

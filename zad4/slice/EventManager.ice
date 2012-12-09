@@ -15,14 +15,14 @@ module generated
 		users subscribedUsers;
 	};
 	
-	["java:type:java.util.LinkedList<Event>"] sequence<Event> events;
+	["java:type:java.util.TreeMap"] dictionary<int, Event> events;
 	
 	interface EventManager
 	{			
 		string createEvent(string eventName, string eventDesc, int daysFromNow, User u);
-		string subscribe(string eventName, User u);
+		string subscribe(int eventId, User u);
 		events listEvents();
-		string modify(string eventName, string eventDesc, int daysFromNow, User u);		
+		string modify(int eventId, string eventName, string eventDesc, int daysFromNow, User u);		
 	};
 	
 };

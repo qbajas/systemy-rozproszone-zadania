@@ -139,19 +139,19 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __ret;
     }
 
-    public java.util.List<Event>
+    public java.util.Map<java.lang.Integer, Event>
     listEvents()
     {
         return listEvents(null, false);
     }
 
-    public java.util.List<Event>
+    public java.util.Map<java.lang.Integer, Event>
     listEvents(java.util.Map<String, String> __ctx)
     {
         return listEvents(__ctx, true);
     }
 
-    private java.util.List<Event>
+    private java.util.Map<java.lang.Integer, Event>
     listEvents(java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         if(__explicitCtx && __ctx == null)
@@ -230,7 +230,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __result;
     }
 
-    public java.util.List<Event> end_listEvents(Ice.AsyncResult __result)
+    public java.util.Map<java.lang.Integer, Event> end_listEvents(Ice.AsyncResult __result)
     {
         Ice.AsyncResult.__check(__result, this, __listEvents_name);
         if(!__result.__wait())
@@ -244,7 +244,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
             }
         }
-        java.util.List<Event> __ret;
+        java.util.Map<java.lang.Integer, Event> __ret;
         IceInternal.BasicStream __is = __result.__is();
         __is.startReadEncaps();
         __ret = eventsHelper.read(__is);
@@ -254,19 +254,19 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
     }
 
     public String
-    modify(String eventName, String eventDesc, int daysFromNow, User u)
+    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u)
     {
-        return modify(eventName, eventDesc, daysFromNow, u, null, false);
+        return modify(eventId, eventName, eventDesc, daysFromNow, u, null, false);
     }
 
     public String
-    modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
+    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
     {
-        return modify(eventName, eventDesc, daysFromNow, u, __ctx, true);
+        return modify(eventId, eventName, eventDesc, daysFromNow, u, __ctx, true);
     }
 
     private String
-    modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         if(__explicitCtx && __ctx == null)
         {
@@ -281,7 +281,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 __checkTwowayOnly("modify");
                 __delBase = __getDelegate(false);
                 _EventManagerDel __del = (_EventManagerDel)__delBase;
-                return __del.modify(eventName, eventDesc, daysFromNow, u, __ctx);
+                return __del.modify(eventId, eventName, eventDesc, daysFromNow, u, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -296,37 +296,37 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
 
     private static final String __modify_name = "modify";
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, null, false, null);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, null, false, null);
     }
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, __ctx, true, null);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, __ctx, true, null);
     }
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, Ice.Callback __cb)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, Ice.Callback __cb)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, null, false, __cb);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, null, false, __cb);
     }
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, __ctx, true, __cb);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, __ctx, true, __cb);
     }
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, Callback_EventManager_modify __cb)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, Callback_EventManager_modify __cb)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, null, false, __cb);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, null, false, __cb);
     }
 
-    public Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Callback_EventManager_modify __cb)
+    public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, Callback_EventManager_modify __cb)
     {
-        return begin_modify(eventName, eventDesc, daysFromNow, u, __ctx, true, __cb);
+        return begin_modify(eventId, eventName, eventDesc, daysFromNow, u, __ctx, true, __cb);
     }
 
-    private Ice.AsyncResult begin_modify(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx, IceInternal.CallbackBase __cb)
+    private Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx, IceInternal.CallbackBase __cb)
     {
         __checkAsyncTwowayOnly(__modify_name);
         IceInternal.OutgoingAsync __result = new IceInternal.OutgoingAsync(this, __modify_name, __cb);
@@ -334,6 +334,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         {
             __result.__prepare(__modify_name, Ice.OperationMode.Normal, __ctx, __explicitCtx);
             IceInternal.BasicStream __os = __result.__os();
+            __os.writeInt(eventId);
             __os.writeString(eventName);
             __os.writeString(eventDesc);
             __os.writeInt(daysFromNow);
@@ -371,19 +372,19 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
     }
 
     public String
-    subscribe(String eventName, User u)
+    subscribe(int eventId, User u)
     {
-        return subscribe(eventName, u, null, false);
+        return subscribe(eventId, u, null, false);
     }
 
     public String
-    subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
+    subscribe(int eventId, User u, java.util.Map<String, String> __ctx)
     {
-        return subscribe(eventName, u, __ctx, true);
+        return subscribe(eventId, u, __ctx, true);
     }
 
     private String
-    subscribe(String eventName, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    subscribe(int eventId, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
     {
         if(__explicitCtx && __ctx == null)
         {
@@ -398,7 +399,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
                 __checkTwowayOnly("subscribe");
                 __delBase = __getDelegate(false);
                 _EventManagerDel __del = (_EventManagerDel)__delBase;
-                return __del.subscribe(eventName, u, __ctx);
+                return __del.subscribe(eventId, u, __ctx);
             }
             catch(IceInternal.LocalExceptionWrapper __ex)
             {
@@ -413,37 +414,37 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
 
     private static final String __subscribe_name = "subscribe";
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u)
     {
-        return begin_subscribe(eventName, u, null, false, null);
+        return begin_subscribe(eventId, u, null, false, null);
     }
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u, java.util.Map<String, String> __ctx)
     {
-        return begin_subscribe(eventName, u, __ctx, true, null);
+        return begin_subscribe(eventId, u, __ctx, true, null);
     }
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u, Ice.Callback __cb)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u, Ice.Callback __cb)
     {
-        return begin_subscribe(eventName, u, null, false, __cb);
+        return begin_subscribe(eventId, u, null, false, __cb);
     }
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb)
     {
-        return begin_subscribe(eventName, u, __ctx, true, __cb);
+        return begin_subscribe(eventId, u, __ctx, true, __cb);
     }
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u, Callback_EventManager_subscribe __cb)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u, Callback_EventManager_subscribe __cb)
     {
-        return begin_subscribe(eventName, u, null, false, __cb);
+        return begin_subscribe(eventId, u, null, false, __cb);
     }
 
-    public Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, Callback_EventManager_subscribe __cb)
+    public Ice.AsyncResult begin_subscribe(int eventId, User u, java.util.Map<String, String> __ctx, Callback_EventManager_subscribe __cb)
     {
-        return begin_subscribe(eventName, u, __ctx, true, __cb);
+        return begin_subscribe(eventId, u, __ctx, true, __cb);
     }
 
-    private Ice.AsyncResult begin_subscribe(String eventName, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx, IceInternal.CallbackBase __cb)
+    private Ice.AsyncResult begin_subscribe(int eventId, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx, IceInternal.CallbackBase __cb)
     {
         __checkAsyncTwowayOnly(__subscribe_name);
         IceInternal.OutgoingAsync __result = new IceInternal.OutgoingAsync(this, __subscribe_name, __cb);
@@ -451,7 +452,7 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         {
             __result.__prepare(__subscribe_name, Ice.OperationMode.Normal, __ctx, __explicitCtx);
             IceInternal.BasicStream __os = __result.__os();
-            __os.writeString(eventName);
+            __os.writeInt(eventId);
             u.__write(__os);
             __os.endWriteEncaps();
             __result.__send(true);

@@ -23,7 +23,7 @@ package generated;
 public final class eventsHelper
 {
     public static void
-    write(IceInternal.BasicStream __os, java.util.List<Event> __v)
+    write(IceInternal.BasicStream __os, java.util.Map<java.lang.Integer, Event> __v)
     {
         if(__v == null)
         {
@@ -32,24 +32,25 @@ public final class eventsHelper
         else
         {
             __os.writeSize(__v.size());
-            for(Event __elem : __v)
+            for(java.util.Map.Entry<java.lang.Integer, Event> __e : __v.entrySet())
             {
-                __os.writeObject(__elem);
+                __os.writeInt(__e.getKey());
+                __os.writeObject(__e.getValue());
             }
         }
     }
 
-    public static java.util.List<Event>
+    public static java.util.Map<java.lang.Integer, Event>
     read(IceInternal.BasicStream __is)
     {
-        java.util.List<Event> __v;
-        __v = new java.util.LinkedList<Event>();
-        final int __len0 = __is.readAndCheckSeqSize(4);
-        final String __type0 = Event.ice_staticId();
-        for(int __i0 = 0; __i0 < __len0; __i0++)
+        java.util.Map<java.lang.Integer, Event> __v;
+        __v = new java.util.TreeMap();
+        int __sz0 = __is.readSize();
+        for(int __i0 = 0; __i0 < __sz0; __i0++)
         {
-            __v.add(null);
-            __is.readObject(new IceInternal.ListPatcher<Event>(__v, Event.class, __type0, __i0));
+            int __key;
+            __key = __is.readInt();
+            __is.readObject(new IceInternal.DictionaryPatcher<java.lang.Integer, Event>(__v, Event.class, "::generated::Event", __key));
         }
         return __v;
     }

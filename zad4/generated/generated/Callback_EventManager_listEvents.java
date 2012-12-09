@@ -22,12 +22,12 @@ package generated;
 
 public abstract class Callback_EventManager_listEvents extends Ice.TwowayCallback
 {
-    public abstract void response(java.util.List<Event> __ret);
+    public abstract void response(java.util.Map<java.lang.Integer, Event> __ret);
 
     public final void __completed(Ice.AsyncResult __result)
     {
         EventManagerPrx __proxy = (EventManagerPrx)__result.getProxy();
-        java.util.List<Event> __ret = null;
+        java.util.Map<java.lang.Integer, Event> __ret = null;
         try
         {
             __ret = __proxy.end_listEvents(__result);

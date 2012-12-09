@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Map;
+
 import generated.Event;
 import generated.EventManagerPrx;
 import generated.User;
@@ -10,7 +12,6 @@ public class CallerImpl implements Caller {
 	private EventManagerPrx eventManagerPrx;
 	private User user;
 
-	
 	public CallerImpl(EventManagerPrx eventManagerPrx, User user) {
 		super();
 		this.eventManagerPrx = eventManagerPrx;
@@ -20,17 +21,31 @@ public class CallerImpl implements Caller {
 	@Override
 	public void listEvents() {
 		System.out.println("Events in the system: ");
-		for (Event event : eventManagerPrx.listEvents()) {
-			System.out.println(event.toString());
+		for (Map.Entry<Integer, Event> entry : eventManagerPrx.listEvents()
+				.entrySet()) {
+			System.out.print(" " + entry.getKey() + ". name:"
+					+ entry.getValue().name + " createdBy:"
+					+ entry.getValue().createdBy.nick + " subscribed:");
+			for (User user : entry.getValue().subscribedUsers) {
+				System.out.print(user.nick + ",");
+			}
+			System.out.println();
 		}
 	}
 
 	@Override
 	public void createEvent(String eventName, String eventDesc,
 			String daysFromNow) {
-		String response = eventManagerPrx.createEvent(eventName, eventDesc, Integer.parseInt(daysFromNow), user);
+		String response = eventManagerPrx.createEvent(eventName, eventDesc,
+				Integer.parseInt(daysFromNow), user);
 		System.out.println("Event created. ");
 	}
 
+	@Override
+	public void subscribe(String eventId) {
+		String response = eventManagerPrx.subscribe(Integer.parseInt(eventId),
+				user);
+		System.out.println("Subscribed to event.");
+	}
 
 }

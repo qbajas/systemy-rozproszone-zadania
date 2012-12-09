@@ -28,10 +28,10 @@ public final class eventsHolder
     }
 
     public
-    eventsHolder(java.util.List<Event> value)
+    eventsHolder(java.util.Map<java.lang.Integer, Event> value)
     {
         this.value = value;
     }
 
-    public java.util.List<Event> value;
+    public java.util.Map<java.lang.Integer, Event> value;
 }
