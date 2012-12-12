@@ -138,6 +138,121 @@ public final class EventManagerPrxHelper extends Ice.ObjectPrxHelperBase impleme
         return __ret;
     }
 
+    public String
+    delete(int eventId, User u)
+    {
+        return delete(eventId, u, null, false);
+    }
+
+    public String
+    delete(int eventId, User u, java.util.Map<String, String> __ctx)
+    {
+        return delete(eventId, u, __ctx, true);
+    }
+
+    private String
+    delete(int eventId, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx)
+    {
+        if(__explicitCtx && __ctx == null)
+        {
+            __ctx = _emptyContext;
+        }
+        int __cnt = 0;
+        while(true)
+        {
+            Ice._ObjectDel __delBase = null;
+            try
+            {
+                __checkTwowayOnly("delete");
+                __delBase = __getDelegate(false);
+                _EventManagerDel __del = (_EventManagerDel)__delBase;
+                return __del.delete(eventId, u, __ctx);
+            }
+            catch(IceInternal.LocalExceptionWrapper __ex)
+            {
+                __handleExceptionWrapper(__delBase, __ex);
+            }
+            catch(Ice.LocalException __ex)
+            {
+                __cnt = __handleException(__delBase, __ex, null, __cnt);
+            }
+        }
+    }
+
+    private static final String __delete_name = "delete";
+
+    public Ice.AsyncResult begin_delete(int eventId, User u)
+    {
+        return begin_delete(eventId, u, null, false, null);
+    }
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx)
+    {
+        return begin_delete(eventId, u, __ctx, true, null);
+    }
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, Ice.Callback __cb)
+    {
+        return begin_delete(eventId, u, null, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb)
+    {
+        return begin_delete(eventId, u, __ctx, true, __cb);
+    }
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, Callback_EventManager_delete __cb)
+    {
+        return begin_delete(eventId, u, null, false, __cb);
+    }
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx, Callback_EventManager_delete __cb)
+    {
+        return begin_delete(eventId, u, __ctx, true, __cb);
+    }
+
+    private Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx, boolean __explicitCtx, IceInternal.CallbackBase __cb)
+    {
+        __checkAsyncTwowayOnly(__delete_name);
+        IceInternal.OutgoingAsync __result = new IceInternal.OutgoingAsync(this, __delete_name, __cb);
+        try
+        {
+            __result.__prepare(__delete_name, Ice.OperationMode.Normal, __ctx, __explicitCtx);
+            IceInternal.BasicStream __os = __result.__os();
+            __os.writeInt(eventId);
+            u.__write(__os);
+            __os.endWriteEncaps();
+            __result.__send(true);
+        }
+        catch(Ice.LocalException __ex)
+        {
+            __result.__exceptionAsync(__ex);
+        }
+        return __result;
+    }
+
+    public String end_delete(Ice.AsyncResult __result)
+    {
+        Ice.AsyncResult.__check(__result, this, __delete_name);
+        if(!__result.__wait())
+        {
+            try
+            {
+                __result.__throwUserException();
+            }
+            catch(Ice.UserException __ex)
+            {
+                throw new Ice.UnknownUserException(__ex.ice_name(), __ex);
+            }
+        }
+        String __ret;
+        IceInternal.BasicStream __is = __result.__is();
+        __is.startReadEncaps();
+        __ret = __is.readString();
+        __is.endReadEncaps();
+        return __ret;
+    }
+
     public java.util.Map<java.lang.Integer, Event>
     listEvents()
     {

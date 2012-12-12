@@ -22,6 +22,7 @@ module generated
 		string subscribe(int eventId, User u);
 		events listEvents();
 		string modify(int eventId, string eventName, string eventDesc, User u);		
+		string delete(int eventId, User u);
 	};
 	
 };

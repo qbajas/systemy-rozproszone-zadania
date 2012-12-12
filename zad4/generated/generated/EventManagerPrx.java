@@ -93,4 +93,22 @@ public interface EventManagerPrx extends Ice.ObjectPrx
     public Ice.AsyncResult begin_modify(int eventId, String eventName, String eventDesc, User u, java.util.Map<String, String> __ctx, Callback_EventManager_modify __cb);
 
     public String end_modify(Ice.AsyncResult __result);
+
+    public String delete(int eventId, User u);
+
+    public String delete(int eventId, User u, java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx, Ice.Callback __cb);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, Callback_EventManager_delete __cb);
+
+    public Ice.AsyncResult begin_delete(int eventId, User u, java.util.Map<String, String> __ctx, Callback_EventManager_delete __cb);
+
+    public String end_delete(Ice.AsyncResult __result);
 }

@@ -47,7 +47,7 @@ public class Command {
 			return;
 		}
 		if (subcommands[0].equals("create")) {
-			caller.createEvent(subcommands[1],subcommands[2],subcommands[3]);
+			caller.createEvent(subcommands[1],subcommands[2]);
 			return;
 		}
 		if (subcommands[0].equals("subscribe")) {
@@ -55,7 +55,11 @@ public class Command {
 			return;
 		}
 		if (subcommands[0].equals("modify")) {
-			caller.modify(subcommands[1],subcommands[2],subcommands[3],subcommands[4]);
+			caller.modify(subcommands[1],subcommands[2],subcommands[3]);
+			return;
+		}
+		if (subcommands[0].equals("delete")) {
+			caller.delete(subcommands[1]);
 			return;
 		}
 		System.out.println("Wrong command !");
@@ -64,10 +68,11 @@ public class Command {
 
 	private void printCommands() {
 		System.out.println("Available commands: ");
-		System.out.println("  create EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
+		System.out.println("  create EVENT_NAME EVENT_DESCRIPTION");
 		System.out.println("  subscribe EVENT_NUMBER");
 		System.out.println("  list");
-		System.out.println("  modify EVENT_NUMBER EVENT_NAME EVENT_DESCRIPTION DAYS_FROM_NOW");
+		System.out.println("  modify EVENT_NUMBER EVENT_NAME EVENT_DESCRIPTION");
+		System.out.println("  delete EVENT_NUMBER");
 	}
 
 

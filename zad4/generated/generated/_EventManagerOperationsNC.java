@@ -29,4 +29,6 @@ public interface _EventManagerOperationsNC
     java.util.Map<java.lang.Integer, Event> listEvents();
 
     String modify(int eventId, String eventName, String eventDesc, User u);
+
+    String delete(int eventId, User u);
 }

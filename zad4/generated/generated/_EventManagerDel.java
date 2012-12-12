@@ -33,4 +33,7 @@ public interface _EventManagerDel extends Ice._ObjectDel
 
     String modify(int eventId, String eventName, String eventDesc, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper;
+
+    String delete(int eventId, User u, java.util.Map<String, String> __ctx)
+        throws IceInternal.LocalExceptionWrapper;
 }

@@ -35,8 +35,7 @@ public class CallerImpl implements Caller {
 	}
 
 	@Override
-	public void createEvent(String eventName, String eventDesc,
-			String daysFromNow) {
+	public void createEvent(String eventName, String eventDesc) {
 		eventManagerPrx.createEvent(eventName, eventDesc, user);
 		System.out.println("Event created. ");
 	}
@@ -53,8 +52,7 @@ public class CallerImpl implements Caller {
 	}
 
 	@Override
-	public void modify(String eventId, String eventName, String eventDesc,
-			String daysFromNow) {
+	public void modify(String eventId, String eventName, String eventDesc) {
 		String response = eventManagerPrx.modify(Integer.parseInt(eventId),
 				eventName, eventDesc, user);
 		if (response.isEmpty()) {
@@ -62,6 +60,17 @@ public class CallerImpl implements Caller {
 		} else {
 			System.out.println(response);
 		}
+	}
+
+	@Override
+	public void delete(String eventId) {
+		String response = eventManagerPrx.delete(Integer.parseInt(eventId), user);
+		if (response.isEmpty()) {
+			System.out.println("Event deleted.");
+		} else {
+			System.out.println(response);
+		}
+		
 	}
 
 }

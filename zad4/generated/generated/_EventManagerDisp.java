@@ -83,6 +83,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         return createEvent(eventName, eventDesc, u, null);
     }
 
+    public final String
+    delete(int eventId, User u)
+    {
+        return delete(eventId, u, null);
+    }
+
     public final java.util.Map<java.lang.Integer, Event>
     listEvents()
     {
@@ -173,9 +179,28 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         return Ice.DispatchStatus.DispatchOK;
     }
 
+    public static Ice.DispatchStatus
+    ___delete(EventManager __obj, IceInternal.Incoming __inS, Ice.Current __current)
+    {
+        __checkMode(Ice.OperationMode.Normal, __current.mode);
+        IceInternal.BasicStream __is = __inS.is();
+        __is.startReadEncaps();
+        int eventId;
+        eventId = __is.readInt();
+        User u;
+        u = new User();
+        u.__read(__is);
+        __is.endReadEncaps();
+        IceInternal.BasicStream __os = __inS.os();
+        String __ret = __obj.delete(eventId, u, __current);
+        __os.writeString(__ret);
+        return Ice.DispatchStatus.DispatchOK;
+    }
+
     private final static String[] __all =
     {
         "createEvent",
+        "delete",
         "ice_id",
         "ice_ids",
         "ice_isA",
@@ -202,29 +227,33 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
             }
             case 1:
             {
-                return ___ice_id(this, in, __current);
+                return ___delete(this, in, __current);
             }
             case 2:
             {
-                return ___ice_ids(this, in, __current);
+                return ___ice_id(this, in, __current);
             }
             case 3:
             {
-                return ___ice_isA(this, in, __current);
+                return ___ice_ids(this, in, __current);
             }
             case 4:
             {
-                return ___ice_ping(this, in, __current);
+                return ___ice_isA(this, in, __current);
             }
             case 5:
             {
-                return ___listEvents(this, in, __current);
+                return ___ice_ping(this, in, __current);
             }
             case 6:
             {
-                return ___modify(this, in, __current);
+                return ___listEvents(this, in, __current);
             }
             case 7:
+            {
+                return ___modify(this, in, __current);
+            }
+            case 8:
             {
                 return ___subscribe(this, in, __current);
             }
