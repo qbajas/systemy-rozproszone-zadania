@@ -23,7 +23,7 @@ package generated;
 public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventManagerDel
 {
     public String
-    createEvent(final String eventName, final String eventDesc, final int daysFromNow, final User u, java.util.Map<String, String> __ctx)
+    createEvent(final String eventName, final String eventDesc, final User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
@@ -45,7 +45,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
                     {
                         throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
                     }
-                    __result.value = __servant.createEvent(eventName, eventDesc, daysFromNow, u, __current);
+                    __result.value = __servant.createEvent(eventName, eventDesc, u, __current);
                     return Ice.DispatchStatus.DispatchOK;
                 }
             };
@@ -129,7 +129,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
     }
 
     public String
-    modify(final int eventId, final String eventName, final String eventDesc, final int daysFromNow, final User u, java.util.Map<String, String> __ctx)
+    modify(final int eventId, final String eventName, final String eventDesc, final User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         final Ice.Current __current = new Ice.Current();
@@ -151,7 +151,7 @@ public final class _EventManagerDelD extends Ice._ObjectDelD implements _EventMa
                     {
                         throw new Ice.OperationNotExistException(__current.id, __current.facet, __current.operation);
                     }
-                    __result.value = __servant.modify(eventId, eventName, eventDesc, daysFromNow, u, __current);
+                    __result.value = __servant.modify(eventId, eventName, eventDesc, u, __current);
                     return Ice.DispatchStatus.DispatchOK;
                 }
             };

@@ -22,11 +22,11 @@ package generated;
 
 public interface _EventManagerOperationsNC
 {
-    String createEvent(String eventName, String eventDesc, int daysFromNow, User u);
+    String createEvent(String eventName, String eventDesc, User u);
 
     String subscribe(int eventId, User u);
 
     java.util.Map<java.lang.Integer, Event> listEvents();
 
-    String modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u);
+    String modify(int eventId, String eventName, String eventDesc, User u);
 }

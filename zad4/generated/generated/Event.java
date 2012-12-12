@@ -26,11 +26,10 @@ public class Event extends Ice.ObjectImpl
     {
     }
 
-    public Event(String name, String description, int daysFromNow, User createdBy, java.util.List<User> subscribedUsers)
+    public Event(String name, String description, User createdBy, java.util.List<User> subscribedUsers)
     {
         this.name = name;
         this.description = description;
-        this.daysFromNow = daysFromNow;
         this.createdBy = createdBy;
         this.subscribedUsers = subscribedUsers;
     }
@@ -112,7 +111,6 @@ public class Event extends Ice.ObjectImpl
         __os.startWriteSlice();
         __os.writeString(name);
         __os.writeString(description);
-        __os.writeInt(daysFromNow);
         createdBy.__write(__os);
         usersHelper.write(__os, subscribedUsers);
         __os.endWriteSlice();
@@ -129,7 +127,6 @@ public class Event extends Ice.ObjectImpl
         __is.startReadSlice();
         name = __is.readString();
         description = __is.readString();
-        daysFromNow = __is.readInt();
         createdBy = new User();
         createdBy.__read(__is);
         subscribedUsers = usersHelper.read(__is);
@@ -156,8 +153,6 @@ public class Event extends Ice.ObjectImpl
     public String name;
 
     public String description;
-
-    public int daysFromNow;
 
     public User createdBy;
 

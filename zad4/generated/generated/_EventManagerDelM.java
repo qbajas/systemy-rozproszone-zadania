@@ -23,7 +23,7 @@ package generated;
 public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventManagerDel
 {
     public String
-    createEvent(String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
+    createEvent(String eventName, String eventDesc, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         IceInternal.Outgoing __og = __handler.getOutgoing("createEvent", Ice.OperationMode.Normal, __ctx);
@@ -34,7 +34,6 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
                 IceInternal.BasicStream __os = __og.os();
                 __os.writeString(eventName);
                 __os.writeString(eventDesc);
-                __os.writeInt(daysFromNow);
                 u.__write(__os);
             }
             catch(Ice.LocalException __ex)
@@ -114,7 +113,7 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
     }
 
     public String
-    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u, java.util.Map<String, String> __ctx)
+    modify(int eventId, String eventName, String eventDesc, User u, java.util.Map<String, String> __ctx)
         throws IceInternal.LocalExceptionWrapper
     {
         IceInternal.Outgoing __og = __handler.getOutgoing("modify", Ice.OperationMode.Normal, __ctx);
@@ -126,7 +125,6 @@ public final class _EventManagerDelM extends Ice._ObjectDelM implements _EventMa
                 __os.writeInt(eventId);
                 __os.writeString(eventName);
                 __os.writeString(eventDesc);
-                __os.writeInt(daysFromNow);
                 u.__write(__os);
             }
             catch(Ice.LocalException __ex)

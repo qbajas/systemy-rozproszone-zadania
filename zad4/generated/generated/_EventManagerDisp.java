@@ -78,9 +78,9 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
     }
 
     public final String
-    createEvent(String eventName, String eventDesc, int daysFromNow, User u)
+    createEvent(String eventName, String eventDesc, User u)
     {
-        return createEvent(eventName, eventDesc, daysFromNow, u, null);
+        return createEvent(eventName, eventDesc, u, null);
     }
 
     public final java.util.Map<java.lang.Integer, Event>
@@ -90,9 +90,9 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
     }
 
     public final String
-    modify(int eventId, String eventName, String eventDesc, int daysFromNow, User u)
+    modify(int eventId, String eventName, String eventDesc, User u)
     {
-        return modify(eventId, eventName, eventDesc, daysFromNow, u, null);
+        return modify(eventId, eventName, eventDesc, u, null);
     }
 
     public final String
@@ -111,14 +111,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventName = __is.readString();
         String eventDesc;
         eventDesc = __is.readString();
-        int daysFromNow;
-        daysFromNow = __is.readInt();
         User u;
         u = new User();
         u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.createEvent(eventName, eventDesc, daysFromNow, u, __current);
+        String __ret = __obj.createEvent(eventName, eventDesc, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }
@@ -165,14 +163,12 @@ public abstract class _EventManagerDisp extends Ice.ObjectImpl implements EventM
         eventName = __is.readString();
         String eventDesc;
         eventDesc = __is.readString();
-        int daysFromNow;
-        daysFromNow = __is.readInt();
         User u;
         u = new User();
         u.__read(__is);
         __is.endReadEncaps();
         IceInternal.BasicStream __os = __inS.os();
-        String __ret = __obj.modify(eventId, eventName, eventDesc, daysFromNow, u, __current);
+        String __ret = __obj.modify(eventId, eventName, eventDesc, u, __current);
         __os.writeString(__ret);
         return Ice.DispatchStatus.DispatchOK;
     }

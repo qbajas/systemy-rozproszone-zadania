@@ -10,7 +10,6 @@ module generated
 	class Event{
 		string name;
 		string description;
-		int daysFromNow;
 		User createdBy;
 		users subscribedUsers;
 	};
@@ -19,10 +18,10 @@ module generated
 	
 	interface EventManager
 	{			
-		string createEvent(string eventName, string eventDesc, int daysFromNow, User u);
+		string createEvent(string eventName, string eventDesc, User u);
 		string subscribe(int eventId, User u);
 		events listEvents();
-		string modify(int eventId, string eventName, string eventDesc, int daysFromNow, User u);		
+		string modify(int eventId, string eventName, string eventDesc, User u);		
 	};
 	
 };

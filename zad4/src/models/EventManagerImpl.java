@@ -27,9 +27,9 @@ public class EventManagerImpl extends _EventManagerDisp {
 
 	@Override
 	public String createEvent(String eventName, String eventDesc,
-			int daysFromNow, User u, Current __current) {
+			User u, Current __current) {
 		int id = generateId();
-		Event event = new Event(eventName, eventDesc, daysFromNow, u, new LinkedList<User>());
+		Event event = new Event(eventName, eventDesc, u, new LinkedList<User>());
 		events.put(id,event);
 		return null;
 	}
@@ -50,14 +50,13 @@ public class EventManagerImpl extends _EventManagerDisp {
 
 	@Override
 	public String modify(int eventId, String eventName, String eventDesc,
-			int daysFromNow, User u, Current __current) {		
+			User u, Current __current) {		
 		Event event = events.get(eventId);
 		if(!event.createdBy.equals(u)){
 			return "You do not own this event - You cannot modify it!";
 		}
 		event.name = eventName;
 		event.description = eventDesc;
-		event.daysFromNow = daysFromNow;
 		return null;
 	}
 

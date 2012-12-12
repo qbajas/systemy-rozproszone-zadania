@@ -25,6 +25,7 @@ public class Command {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
+			System.out.println();
 			System.out.println("Type a command: ");
 			String msg = br.readLine();
 			interpret(msg);
