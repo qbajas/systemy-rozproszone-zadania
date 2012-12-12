@@ -8,4 +8,6 @@ public interface Caller {
 
 	void subscribe(String eventId);
 
+	void modify(String eventId, String eventName, String eventDesc, String daysFromNow);
+
 }

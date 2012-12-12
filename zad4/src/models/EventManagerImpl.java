@@ -13,7 +13,7 @@ import generated._EventManagerDisp;
 public class EventManagerImpl extends _EventManagerDisp {
 	
 	Map<Integer,Event> events;
-	static int lastId=1;
+	static int lastId=1; // TODO synchronize
 	
 	
 	public EventManagerImpl() {
@@ -40,15 +40,24 @@ public class EventManagerImpl extends _EventManagerDisp {
 		if(event==null){
 			return "There is no such event!";
 		}else{
-			event.subscribedUsers.add(u);
+			if(event.subscribedUsers.contains(u)){
+				return "You already subscribed to this event!";
+			}			
+			event.subscribedUsers.add(u);			
 		}
 		return null;
 	}
 
 	@Override
 	public String modify(int eventId, String eventName, String eventDesc,
-			int daysFromNow, User u, Current __current) {
-		// TODO Auto-generated method stub
+			int daysFromNow, User u, Current __current) {		
+		Event event = events.get(eventId);
+		if(!event.createdBy.equals(u)){
+			return "You do not own this event - You cannot modify it!";
+		}
+		event.name = eventName;
+		event.description = eventDesc;
+		event.daysFromNow = daysFromNow;
 		return null;
 	}
 

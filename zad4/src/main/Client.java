@@ -21,7 +21,7 @@ public class Client {
 		Ice.Communicator ic = null;
 		try {
 			ic = Ice.Util.initialize(args);
-			Ice.ObjectPrx base = ic.stringToProxy("EventManager:default -p 10001");
+			Ice.ObjectPrx base = ic.stringToProxy("EventManager:"+args[0]+" -p "+args[1]);
 			EventManagerPrx eventManagerPrx = EventManagerPrxHelper.checkedCast(base);
 			if (eventManagerPrx == null)
 				throw new Error("Invalid proxy");		

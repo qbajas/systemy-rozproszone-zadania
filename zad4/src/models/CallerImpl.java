@@ -25,7 +25,8 @@ public class CallerImpl implements Caller {
 				.entrySet()) {
 			System.out.print(" " + entry.getKey() + ". name:"
 					+ entry.getValue().name + " createdBy:"
-					+ entry.getValue().createdBy.nick + " subscribed:");
+					+ entry.getValue().createdBy.nick + " description:"
+					+ entry.getValue().description + " subscribed:");
 			for (User user : entry.getValue().subscribedUsers) {
 				System.out.print(user.nick + ",");
 			}
@@ -36,7 +37,7 @@ public class CallerImpl implements Caller {
 	@Override
 	public void createEvent(String eventName, String eventDesc,
 			String daysFromNow) {
-		String response = eventManagerPrx.createEvent(eventName, eventDesc,
+		eventManagerPrx.createEvent(eventName, eventDesc,
 				Integer.parseInt(daysFromNow), user);
 		System.out.println("Event created. ");
 	}
@@ -45,7 +46,23 @@ public class CallerImpl implements Caller {
 	public void subscribe(String eventId) {
 		String response = eventManagerPrx.subscribe(Integer.parseInt(eventId),
 				user);
-		System.out.println("Subscribed to event.");
+		if (response.isEmpty()) {
+			System.out.println("Subscribed to event.");
+		} else {
+			System.out.println(response);
+		}
+	}
+
+	@Override
+	public void modify(String eventId, String eventName, String eventDesc,
+			String daysFromNow) {
+		String response = eventManagerPrx.modify(Integer.parseInt(eventId),
+				eventName, eventDesc, Integer.parseInt(daysFromNow), user);
+		if (response.isEmpty()) {
+			System.out.println("Event modified.");
+		} else {
+			System.out.println(response);
+		}
 	}
 
 }

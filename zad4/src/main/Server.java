@@ -16,7 +16,7 @@ public class Server {
 		try {
 			ic = Ice.Util.initialize(args);
 			Ice.ObjectAdapter adapter = ic.createObjectAdapterWithEndpoints(
-					"EventManagerAdapter", "default -p 10001");
+					"EventManagerAdapter", args[0]+" -p "+args[1]);
 			Ice.Object object = new EventManagerImpl();
 			ObjectPrx op = adapter.add(object, ic.stringToIdentity("EventManager"));
 			adapter.activate();

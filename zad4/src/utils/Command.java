@@ -53,6 +53,10 @@ public class Command {
 			caller.subscribe(subcommands[1]);
 			return;
 		}
+		if (subcommands[0].equals("modify")) {
+			caller.modify(subcommands[1],subcommands[2],subcommands[3],subcommands[4]);
+			return;
+		}
 		System.out.println("Wrong command !");
 		printCommands();
 	}
