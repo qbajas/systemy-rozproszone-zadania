@@ -47,7 +47,7 @@ public class CallerImpl implements Caller {
 		if (response.isEmpty()) {
 			System.out.println("Subscribed to event.");
 		} else {
-			System.out.println(response);
+			System.out.println("ERROR: "+response);
 		}
 	}
 
@@ -55,10 +55,11 @@ public class CallerImpl implements Caller {
 	public void modify(String eventId, String eventName, String eventDesc) {
 		String response = eventManagerPrx.modify(Integer.parseInt(eventId),
 				eventName, eventDesc, user);
+		// TODO log server exception
 		if (response.isEmpty()) {
 			System.out.println("Event modified.");
 		} else {
-			System.out.println(response);
+			System.out.println("ERROR: "+response);
 		}
 	}
 
@@ -68,7 +69,7 @@ public class CallerImpl implements Caller {
 		if (response.isEmpty()) {
 			System.out.println("Event deleted.");
 		} else {
-			System.out.println(response);
+			System.out.println("ERROR: "+response);
 		}
 		
 	}

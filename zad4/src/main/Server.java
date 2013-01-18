@@ -20,6 +20,7 @@ public class Server {
 			Ice.Object object = new EventManagerImpl();
 			ObjectPrx op = adapter.add(object, ic.stringToIdentity("EventManager"));
 			adapter.activate();
+			adapter.addDefaultServant(object, "");
 			System.out.println("The server started.");
 			ic.waitForShutdown();
 		} catch (Ice.LocalException e) {

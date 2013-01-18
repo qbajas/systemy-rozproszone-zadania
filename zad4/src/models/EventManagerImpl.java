@@ -13,7 +13,7 @@ import generated._EventManagerDisp;
 public class EventManagerImpl extends _EventManagerDisp {
 
 	Map<Integer, Event> events;
-	static int lastId = 1; // TODO synchronize
+	static int lastId = 1; // TODO synchronize (read write lock, readers-writers problem), AtomicInteger
 
 	public EventManagerImpl() {
 		events = new TreeMap<Integer, Event>();
@@ -61,7 +61,7 @@ public class EventManagerImpl extends _EventManagerDisp {
 		return null;
 	}
 
-	private int generateId() {
+	private static synchronized int generateId() {
 		return lastId++;
 	}
 
